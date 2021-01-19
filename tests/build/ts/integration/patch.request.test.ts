@@ -52,72 +52,72 @@ const hostName = 'http://127.0.0.1:3000';
 describe('Request should succeed when performing a PATCH on an endpoint that returns a', () => {
   it('200 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.patch(`${hostName}/200`, payload, { Accept: '*/*' });
+    const response = await restClient.Patch(`${hostName}/200`, payload, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
     expect(response.data).toBe('200 OK');
   });
 
   it('201 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.patch(`${hostName}/201`, payload, { Accept: '*/*' });
+    const response = await restClient.Patch(`${hostName}/201`, payload, { Accept: '*/*' });
     expect(response.statusCode).toBe(201);
     expect(response.data).toBe('201 Created');
   });
 
   it('202 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.patch(`${hostName}/202`, payload, { Accept: '*/*' });
+    const response = await restClient.Patch(`${hostName}/202`, payload, { Accept: '*/*' });
     expect(response.statusCode).toBe(202);
     expect(response.data).toBe('202 Accepted');
   });
 
   it('203 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.patch(`${hostName}/203`, payload, { Accept: '*/*' });
+    const response = await restClient.Patch(`${hostName}/203`, payload, { Accept: '*/*' });
     expect(response.statusCode).toBe(203);
     expect(response.data).toBe('203 Non-Authoritative Information');
   });
 
   it('206 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.patch(`${hostName}/206`, payload, { Accept: '*/*' });
+    const response = await restClient.Patch(`${hostName}/206`, payload, { Accept: '*/*' });
     expect(response.statusCode).toBe(206);
     expect(response.data).toBe('206 Partial Content');
   });
 
   it('301 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.patch(`${hostName}/301`, payload, { Accept: '*/*' });
+    const response = await restClient.Patch(`${hostName}/301`, payload, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
   });
 
   it('302 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.patch(`${hostName}/302`, payload, { Accept: '*/*' });
+    const response = await restClient.Patch(`${hostName}/302`, payload, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
   });
 
   it('303 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.patch(`${hostName}/303`, payload, { Accept: '*/*' });
+    const response = await restClient.Patch(`${hostName}/303`, payload, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
   });
 
   it('305 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.patch(`${hostName}/305`, payload, { Accept: '*/*' });
+    const response = await restClient.Patch(`${hostName}/305`, payload, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
   });
 
   it('307 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.patch(`${hostName}/307`, payload, { Accept: '*/*' });
+    const response = await restClient.Patch(`${hostName}/307`, payload, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
   });
 
   it('308 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.patch(`${hostName}/308`, payload, { Accept: '*/*' });
+    const response = await restClient.Patch(`${hostName}/308`, payload, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
   });
 });
@@ -126,7 +126,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('299 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/299`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/299`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
     }
@@ -135,7 +135,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('301 status code with no redirect', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/301`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/301`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error301MovedPermanently);
       expect(error.statusCode).toBe(301);
@@ -145,7 +145,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('302 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/302`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/302`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error302Found);
       expect(error.statusCode).toBe(302);
@@ -155,7 +155,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('303 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/303`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/303`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error303SeeOther);
       expect(error.statusCode).toBe(303);
@@ -165,7 +165,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('304 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/304`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/304`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error304NotModified);
       expect(error.statusCode).toBe(304);
@@ -175,7 +175,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('305 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/305`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/305`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error305UseProxy);
       expect(error.statusCode).toBe(305);
@@ -185,7 +185,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('306 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/306`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/306`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error306Unused);
       expect(error.statusCode).toBe(306);
@@ -195,7 +195,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('307 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/307`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/307`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error307TemporaryRedirect);
       expect(error.statusCode).toBe(307);
@@ -205,7 +205,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('308 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/308`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/308`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error308PermanentRedirect);
       expect(error.statusCode).toBe(308);
@@ -215,7 +215,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('399 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/399`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/399`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
     }
@@ -224,7 +224,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('400 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/400`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/400`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error400BadRequest);
       expect(error.statusCode).toBe(400);
@@ -234,7 +234,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('401 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/401`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/401`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error401Unauthorized);
       expect(error.statusCode).toBe(401);
@@ -244,7 +244,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('402 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/402`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/402`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error402PaymentRequired);
       expect(error.statusCode).toBe(402);
@@ -254,7 +254,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('403 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/403`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/403`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error403Forbidden);
       expect(error.statusCode).toBe(403);
@@ -264,7 +264,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('404 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/404`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/404`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error404NotFound);
       expect(error.statusCode).toBe(404);
@@ -274,7 +274,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('405 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/405`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/405`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error405MethodNotAllowed);
       expect(error.statusCode).toBe(405);
@@ -284,7 +284,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('406 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/406`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/406`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error406NotAcceptable);
       expect(error.statusCode).toBe(406);
@@ -294,7 +294,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('407 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/407`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/407`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error407ProxyAuthenticationRequired);
       expect(error.statusCode).toBe(407);
@@ -304,7 +304,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('408 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/408`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/408`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error408RequestTimeout);
       expect(error.statusCode).toBe(408);
@@ -314,7 +314,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('409 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/409`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/409`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error409Conflict);
       expect(error.statusCode).toBe(409);
@@ -324,7 +324,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('410 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/410`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/410`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error410Gone);
       expect(error.statusCode).toBe(410);
@@ -334,7 +334,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('411 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/411`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/411`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error411LengthRequired);
       expect(error.statusCode).toBe(411);
@@ -344,7 +344,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('412 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/412`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/412`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error412PreconditionFailed);
       expect(error.statusCode).toBe(412);
@@ -354,7 +354,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('413 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/413`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/413`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error413RequestEntityTooLarge);
       expect(error.statusCode).toBe(413);
@@ -364,7 +364,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('414 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/414`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/414`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error414RequestURITooLong);
       expect(error.statusCode).toBe(414);
@@ -374,7 +374,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('415 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/415`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/415`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error415UnsupportedMediaType);
       expect(error.statusCode).toBe(415);
@@ -384,7 +384,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('416 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/416`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/416`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error416RequestedRangeNotSatisfiable);
       expect(error.statusCode).toBe(416);
@@ -394,7 +394,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('417 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/417`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/417`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error417ExpectationFailed);
       expect(error.statusCode).toBe(417);
@@ -404,7 +404,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('418 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/418`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/418`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error418ImaTeapot);
       expect(error.statusCode).toBe(418);
@@ -414,7 +414,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('421 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/421`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/421`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error421MisdirectedRequest);
       expect(error.statusCode).toBe(421);
@@ -424,7 +424,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('422 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/422`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/422`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error422UnprocessableEntity);
       expect(error.statusCode).toBe(422);
@@ -434,7 +434,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('428 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/428`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/428`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error428PreconditionRequired);
       expect(error.statusCode).toBe(428);
@@ -444,7 +444,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('429 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/429`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/429`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error429TooManyRequests);
       expect(error.statusCode).toBe(429);
@@ -454,7 +454,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('431 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/431`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/431`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error431RequestHeaderFieldsTooLarge);
       expect(error.statusCode).toBe(431);
@@ -464,7 +464,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('451 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/451`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/451`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error451UnavailableForLegalReasons);
       expect(error.statusCode).toBe(451);
@@ -474,7 +474,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('499 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/499`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/499`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
     }
@@ -483,7 +483,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('500 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/500`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/500`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error500InternalServerError);
       expect(error.statusCode).toBe(500);
@@ -493,7 +493,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('501 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/501`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/501`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error501NotImplemented);
       expect(error.statusCode).toBe(501);
@@ -503,7 +503,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('502 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/502`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/502`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error502BadGateway);
       expect(error.statusCode).toBe(502);
@@ -513,7 +513,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('503 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/503`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/503`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error503ServiceUnavailable);
       expect(error.statusCode).toBe(503);
@@ -523,7 +523,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('504 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/504`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/504`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error504GatewayTimeout);
       expect(error.statusCode).toBe(504);
@@ -533,7 +533,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('505 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/505`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/505`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error505HTTPVersionNotSupported);
       expect(error.statusCode).toBe(505);
@@ -543,7 +543,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('511 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/511`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/511`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error511NetworkAuthenticationRequired);
       expect(error.statusCode).toBe(511);
@@ -553,7 +553,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('520 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/520`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/520`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
       expect(error.statusCode).toBe(520);
@@ -563,7 +563,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('522 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/522`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/522`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error522ConnectionTimedOut);
       expect(error.statusCode).toBe(522);
@@ -573,7 +573,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
   it('524 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.patch(`${hostName}/524`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Patch(`${hostName}/524`, payload, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error524ATimeoutOccurred);
       expect(error.statusCode).toBe(524);

@@ -11,12 +11,12 @@ export type RestClientResponse = {
 }
 
 export interface IRestClient {
-  head(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse>;
-  get(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse>;
-  post(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse>;
-  put(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse>;
-  patch(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse>;
-  delete(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse>;
+  Head(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse>;
+  Get(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse>;
+  Post(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse>;
+  Put(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse>;
+  Patch(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse>;
+  Delete(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse>;
 }
 
 export interface IMockRestClient extends IRestClient {

@@ -50,72 +50,72 @@ const hostName = 'http://127.0.0.1:3000';
 describe('Request should succeed when performing a GET on an endpoint that returns a', () => {
   it('200 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.get(`${hostName}/200`, { Accept: '*/*' });
+    const response = await restClient.Get(`${hostName}/200`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
     expect(response.data).toBe('200 OK');
   });
 
   it('201 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.get(`${hostName}/201`, { Accept: '*/*' });
+    const response = await restClient.Get(`${hostName}/201`, { Accept: '*/*' });
     expect(response.statusCode).toBe(201);
     expect(response.data).toBe('201 Created');
   });
 
   it('202 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.get(`${hostName}/202`, { Accept: '*/*' });
+    const response = await restClient.Get(`${hostName}/202`, { Accept: '*/*' });
     expect(response.statusCode).toBe(202);
     expect(response.data).toBe('202 Accepted');
   });
 
   it('203 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.get(`${hostName}/203`, { Accept: '*/*' });
+    const response = await restClient.Get(`${hostName}/203`, { Accept: '*/*' });
     expect(response.statusCode).toBe(203);
     expect(response.data).toBe('203 Non-Authoritative Information');
   });
 
   it('206 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.get(`${hostName}/206`, { Accept: '*/*' });
+    const response = await restClient.Get(`${hostName}/206`, { Accept: '*/*' });
     expect(response.statusCode).toBe(206);
     expect(response.data).toBe('206 Partial Content');
   });
 
   it('301 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.get(`${hostName}/301`, { Accept: '*/*' });
+    const response = await restClient.Get(`${hostName}/301`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
   });
 
   it('302 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.get(`${hostName}/302`, { Accept: '*/*' });
+    const response = await restClient.Get(`${hostName}/302`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
   });
 
   it('303 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.get(`${hostName}/303`, { Accept: '*/*' });
+    const response = await restClient.Get(`${hostName}/303`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
   });
 
   it('305 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.get(`${hostName}/305`, { Accept: '*/*' });
+    const response = await restClient.Get(`${hostName}/305`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
   });
 
   it('307 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.get(`${hostName}/307`, { Accept: '*/*' });
+    const response = await restClient.Get(`${hostName}/307`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
   });
 
   it('308 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.get(`${hostName}/308`, { Accept: '*/*' });
+    const response = await restClient.Get(`${hostName}/308`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
   });
 });
@@ -124,7 +124,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('299 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/299`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/299`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
     }
@@ -133,7 +133,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('301 status code with no redirect', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/301`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/301`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error301MovedPermanently);
       expect(error.statusCode).toBe(301);
@@ -143,7 +143,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('302 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/302`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/302`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error302Found);
       expect(error.statusCode).toBe(302);
@@ -153,7 +153,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('303 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/303`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/303`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error303SeeOther);
       expect(error.statusCode).toBe(303);
@@ -163,7 +163,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('304 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/304`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/304`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error304NotModified);
       expect(error.statusCode).toBe(304);
@@ -173,7 +173,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('305 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/305`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/305`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error305UseProxy);
       expect(error.statusCode).toBe(305);
@@ -183,7 +183,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('306 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/306`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/306`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error306Unused);
       expect(error.statusCode).toBe(306);
@@ -193,7 +193,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('307 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/307`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/307`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error307TemporaryRedirect);
       expect(error.statusCode).toBe(307);
@@ -203,7 +203,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('308 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/308`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/308`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error308PermanentRedirect);
       expect(error.statusCode).toBe(308);
@@ -213,7 +213,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('399 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/399`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/399`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
     }
@@ -222,7 +222,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('400 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/400`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/400`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error400BadRequest);
       expect(error.statusCode).toBe(400);
@@ -232,7 +232,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('401 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/401`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/401`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error401Unauthorized);
       expect(error.statusCode).toBe(401);
@@ -242,7 +242,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('402 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/402`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/402`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error402PaymentRequired);
       expect(error.statusCode).toBe(402);
@@ -252,7 +252,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('403 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/403`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/403`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error403Forbidden);
       expect(error.statusCode).toBe(403);
@@ -262,7 +262,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('404 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/404`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/404`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error404NotFound);
       expect(error.statusCode).toBe(404);
@@ -272,7 +272,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('405 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/405`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/405`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error405MethodNotAllowed);
       expect(error.statusCode).toBe(405);
@@ -282,7 +282,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('406 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/406`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/406`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error406NotAcceptable);
       expect(error.statusCode).toBe(406);
@@ -292,7 +292,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('407 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/407`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/407`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error407ProxyAuthenticationRequired);
       expect(error.statusCode).toBe(407);
@@ -302,7 +302,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('408 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/408`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/408`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error408RequestTimeout);
       expect(error.statusCode).toBe(408);
@@ -312,7 +312,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('409 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/409`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/409`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error409Conflict);
       expect(error.statusCode).toBe(409);
@@ -322,7 +322,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('410 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/410`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/410`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error410Gone);
       expect(error.statusCode).toBe(410);
@@ -332,7 +332,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('411 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/411`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/411`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error411LengthRequired);
       expect(error.statusCode).toBe(411);
@@ -342,7 +342,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('412 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/412`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/412`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error412PreconditionFailed);
       expect(error.statusCode).toBe(412);
@@ -352,7 +352,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('413 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/413`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/413`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error413RequestEntityTooLarge);
       expect(error.statusCode).toBe(413);
@@ -362,7 +362,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('414 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/414`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/414`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error414RequestURITooLong);
       expect(error.statusCode).toBe(414);
@@ -372,7 +372,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('415 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/415`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/415`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error415UnsupportedMediaType);
       expect(error.statusCode).toBe(415);
@@ -382,7 +382,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('416 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/416`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/416`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error416RequestedRangeNotSatisfiable);
       expect(error.statusCode).toBe(416);
@@ -392,7 +392,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('417 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/417`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/417`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error417ExpectationFailed);
       expect(error.statusCode).toBe(417);
@@ -402,7 +402,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('418 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/418`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/418`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error418ImaTeapot);
       expect(error.statusCode).toBe(418);
@@ -412,7 +412,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('421 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/421`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/421`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error421MisdirectedRequest);
       expect(error.statusCode).toBe(421);
@@ -422,7 +422,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('422 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/422`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/422`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error422UnprocessableEntity);
       expect(error.statusCode).toBe(422);
@@ -432,7 +432,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('428 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/428`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/428`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error428PreconditionRequired);
       expect(error.statusCode).toBe(428);
@@ -442,7 +442,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('429 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/429`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/429`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error429TooManyRequests);
       expect(error.statusCode).toBe(429);
@@ -452,7 +452,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('431 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/431`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/431`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error431RequestHeaderFieldsTooLarge);
       expect(error.statusCode).toBe(431);
@@ -462,7 +462,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('451 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/451`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/451`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error451UnavailableForLegalReasons);
       expect(error.statusCode).toBe(451);
@@ -472,7 +472,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('499 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/499`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/499`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
     }
@@ -481,7 +481,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('500 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/500`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/500`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error500InternalServerError);
       expect(error.statusCode).toBe(500);
@@ -491,7 +491,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('501 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/501`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/501`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error501NotImplemented);
       expect(error.statusCode).toBe(501);
@@ -501,7 +501,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('502 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/502`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/502`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error502BadGateway);
       expect(error.statusCode).toBe(502);
@@ -511,7 +511,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('503 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/503`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/503`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error503ServiceUnavailable);
       expect(error.statusCode).toBe(503);
@@ -521,7 +521,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('504 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/504`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/504`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error504GatewayTimeout);
       expect(error.statusCode).toBe(504);
@@ -531,7 +531,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('505 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/505`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/505`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error505HTTPVersionNotSupported);
       expect(error.statusCode).toBe(505);
@@ -541,7 +541,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('511 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/511`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/511`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error511NetworkAuthenticationRequired);
       expect(error.statusCode).toBe(511);
@@ -551,7 +551,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('520 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/520`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/520`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
       expect(error.statusCode).toBe(520);
@@ -561,7 +561,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('522 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/522`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/522`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error522ConnectionTimedOut);
       expect(error.statusCode).toBe(522);
@@ -571,7 +571,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('524 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.get(`${hostName}/524`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/524`, { Accept: '*/*' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error524ATimeoutOccurred);
       expect(error.statusCode).toBe(524);

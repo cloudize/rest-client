@@ -13,7 +13,8 @@ import {
 } from '..';
 
 export default class RestClient implements IRestClient {
-  handleError(uri: string, response: AxiosResponse<any>) {
+  // eslint-disable-next-line class-methods-use-this
+  private HandleError(uri: string, response: AxiosResponse<any>) {
     if (response) {
       ThrowException(response.status, {
         statusCode: response.status, statusText: response.statusText, headers: response.headers, data: response.data,
@@ -23,11 +24,13 @@ export default class RestClient implements IRestClient {
     }
   }
 
-  isAxiosError(error: any): error is AxiosError {
+  // eslint-disable-next-line class-methods-use-this
+  private IsAxiosError(error: any): error is AxiosError {
     return (error as AxiosError).isAxiosError !== undefined;
   }
 
-  async delete(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
+  // eslint-disable-next-line consistent-return
+  async Delete(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
     const axiosConfig: AxiosRequestConfig = {
       url: uri,
       method: 'GET',
@@ -48,15 +51,16 @@ export default class RestClient implements IRestClient {
         data: axiosResponse.data === '' ? undefined : axiosResponse.data,
       };
     } catch (error) {
-      if (this.isAxiosError(error)) {
-        this.handleError(uri, error.response);
+      if (this.IsAxiosError(error)) {
+        this.HandleError(uri, error.response);
       } else {
         throw error;
       }
     }
   }
 
-  async get(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
+  // eslint-disable-next-line consistent-return
+  async Get(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
     const axiosConfig: AxiosRequestConfig = {
       url: uri,
       method: 'GET',
@@ -77,15 +81,16 @@ export default class RestClient implements IRestClient {
         data: axiosResponse.data === '' ? undefined : axiosResponse.data,
       };
     } catch (error) {
-      if (this.isAxiosError(error)) {
-        this.handleError(uri, error.response);
+      if (this.IsAxiosError(error)) {
+        this.HandleError(uri, error.response);
       } else {
         throw error;
       }
     }
   }
 
-  async head(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
+  // eslint-disable-next-line consistent-return
+  async Head(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
     const axiosConfig: AxiosRequestConfig = {
       url: uri,
       method: 'HEAD',
@@ -106,15 +111,16 @@ export default class RestClient implements IRestClient {
         data: axiosResponse.data === '' ? undefined : axiosResponse.data,
       };
     } catch (error) {
-      if (this.isAxiosError(error)) {
-        this.handleError(uri, error.response);
+      if (this.IsAxiosError(error)) {
+        this.HandleError(uri, error.response);
       } else {
         throw error;
       }
     }
   }
 
-  async patch(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
+  // eslint-disable-next-line consistent-return
+  async Patch(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
     const axiosConfig: AxiosRequestConfig = {
       url: uri,
       method: 'PATCH',
@@ -135,15 +141,16 @@ export default class RestClient implements IRestClient {
         data: axiosResponse.data === '' ? undefined : axiosResponse.data,
       };
     } catch (error) {
-      if (this.isAxiosError(error)) {
-        this.handleError(uri, error.response);
+      if (this.IsAxiosError(error)) {
+        this.HandleError(uri, error.response);
       } else {
         throw error;
       }
     }
   }
 
-  async post(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
+  // eslint-disable-next-line consistent-return
+  async Post(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
     const axiosConfig: AxiosRequestConfig = {
       url: uri,
       method: 'POST',
@@ -164,15 +171,16 @@ export default class RestClient implements IRestClient {
         data: axiosResponse.data === '' ? undefined : axiosResponse.data,
       };
     } catch (error) {
-      if (this.isAxiosError(error)) {
-        this.handleError(uri, error.response);
+      if (this.IsAxiosError(error)) {
+        this.HandleError(uri, error.response);
       } else {
         throw error;
       }
     }
   }
 
-  async put(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
+  // eslint-disable-next-line consistent-return
+  async Put(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
     const axiosConfig: AxiosRequestConfig = {
       url: uri,
       method: 'PUT',
@@ -193,8 +201,8 @@ export default class RestClient implements IRestClient {
         data: axiosResponse.data === '' ? undefined : axiosResponse.data,
       };
     } catch (error) {
-      if (this.isAxiosError(error)) {
-        this.handleError(uri, error.response);
+      if (this.IsAxiosError(error)) {
+        this.HandleError(uri, error.response);
       } else {
         throw error;
       }

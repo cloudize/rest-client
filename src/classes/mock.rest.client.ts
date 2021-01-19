@@ -18,111 +18,111 @@ type MockResponseQueueItem = {
 type MockResponseQueue = Array<MockResponseQueueItem>;
 
 export default class MockRestClient implements IMockRestClient {
-  private _responseQueue: MockResponseQueue;
+  private mockResponseQueue: MockResponseQueue;
 
   constructor() {
-    this._responseQueue = [];
+    this.mockResponseQueue = [];
   }
 
-  mockResolve(value: RestClientResponse) {
+  MockResolve(value: RestClientResponse) {
     const params: MockResponseQueueItem = {
       action: MockResponseType.Resolve,
       value,
     };
-    this._responseQueue.push(params);
+    this.mockResponseQueue.push(params);
 
     return this;
   }
 
-  mockReject(value: RestClientBaseException) {
+  MockReject(value: RestClientBaseException) {
     const params = {
       action: MockResponseType.Reject,
       value,
     };
-    this._responseQueue.push(params);
+    this.mockResponseQueue.push(params);
 
     return this;
   }
 
   // eslint-disable-next-line no-unused-vars
-  async delete(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
-    if (this._responseQueue.length > 0) {
-      const actionParams = this._responseQueue.shift();
+  async Delete(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
+    if (this.mockResponseQueue.length > 0) {
+      const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
         return actionParams.value;
       }
       throw actionParams.value;
     } else {
-      throw new Error('Please mock the delete() response document using mockResolve() or mockReject().');
+      throw new Error('Please mock the Delete() response document using MockResolve() or MockReject().');
     }
   }
 
   // eslint-disable-next-line no-unused-vars
-  async get(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
-    if (this._responseQueue.length > 0) {
-      const actionParams = this._responseQueue.shift();
+  async Get(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
+    if (this.mockResponseQueue.length > 0) {
+      const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
         return actionParams.value;
       }
       throw actionParams.value;
     } else {
-      throw new Error('Please mock the get() response document using mockResolve() or mockReject().');
+      throw new Error('Please mock the Get() response document using MockResolve() or MockReject().');
     }
   }
 
   // eslint-disable-next-line no-unused-vars
-  async head(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
-    if (this._responseQueue.length > 0) {
-      const actionParams = this._responseQueue.shift();
+  async Head(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
+    if (this.mockResponseQueue.length > 0) {
+      const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
         return actionParams.value;
       }
       throw actionParams.value;
     } else {
-      throw new Error('Please mock the head() response document using mockResolve() or mockReject().');
+      throw new Error('Please mock the Head() response document using MockResolve() or MockReject().');
     }
   }
 
   // eslint-disable-next-line no-unused-vars
-  async patch(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
-    if (this._responseQueue.length > 0) {
-      const actionParams = this._responseQueue.shift();
+  async Patch(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
+    if (this.mockResponseQueue.length > 0) {
+      const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
         return actionParams.value;
       }
       throw actionParams.value;
     } else {
-      throw new Error('Please mock the patch() response document using mockResolve() or mockReject().');
+      throw new Error('Please mock the Patch() response document using MockResolve() or MockReject().');
     }
   }
 
   // eslint-disable-next-line no-unused-vars
-  async post(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
-    if (this._responseQueue.length > 0) {
-      const actionParams = this._responseQueue.shift();
+  async Post(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
+    if (this.mockResponseQueue.length > 0) {
+      const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
         return actionParams.value;
       }
       throw actionParams.value;
     } else {
-      throw new Error('Please mock the post() response document using mockResolve() or mockReject().');
+      throw new Error('Please mock the Post() response document using MockResolve() or MockReject().');
     }
   }
 
   // eslint-disable-next-line no-unused-vars
-  async put(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
-    if (this._responseQueue.length > 0) {
-      const actionParams = this._responseQueue.shift();
+  async Put(uri: string, payload: any, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
+    if (this.mockResponseQueue.length > 0) {
+      const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
         return actionParams.value;
       }
       throw actionParams.value;
     } else {
-      throw new Error('Please mock the put() response document using mockResolve() or mockReject().');
+      throw new Error('Please mock the Put() response document using MockResolve() or MockReject().');
     }
   }
 
   reset() {
-    this._responseQueue = [];
+    this.mockResponseQueue = [];
   }
 }
