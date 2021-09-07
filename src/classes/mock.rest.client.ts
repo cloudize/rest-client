@@ -1,3 +1,4 @@
+import { hasProperty, isNumber } from '@apigames/json';
 import {
   IMockRestClient,
   RestClientBaseException,
@@ -5,6 +6,7 @@ import {
   RestClientResponse,
 } from '..';
 
+// eslint-disable-next-line no-shadow
 enum MockResponseType {
   Resolve,
   Reject
@@ -44,12 +46,17 @@ export default class MockRestClient implements IMockRestClient {
     return this;
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  isRestClientResponse(value: any): value is RestClientResponse {
+    return (hasProperty(value, 'statusCode') && isNumber(value.statusCode));
+  }
+
   // eslint-disable-next-line no-unused-vars
   async Delete(uri: string, headers?: object, options?: RestClientOptions): Promise<RestClientResponse> {
     if (this.mockResponseQueue.length > 0) {
       const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
-        return actionParams.value;
+        if (this.isRestClientResponse(actionParams.value)) return actionParams.value;
       }
       throw actionParams.value;
     } else {
@@ -62,7 +69,7 @@ export default class MockRestClient implements IMockRestClient {
     if (this.mockResponseQueue.length > 0) {
       const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
-        return actionParams.value;
+        if (this.isRestClientResponse(actionParams.value)) return actionParams.value;
       }
       throw actionParams.value;
     } else {
@@ -75,7 +82,7 @@ export default class MockRestClient implements IMockRestClient {
     if (this.mockResponseQueue.length > 0) {
       const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
-        return actionParams.value;
+        if (this.isRestClientResponse(actionParams.value)) return actionParams.value;
       }
       throw actionParams.value;
     } else {
@@ -88,7 +95,7 @@ export default class MockRestClient implements IMockRestClient {
     if (this.mockResponseQueue.length > 0) {
       const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
-        return actionParams.value;
+        if (this.isRestClientResponse(actionParams.value)) return actionParams.value;
       }
       throw actionParams.value;
     } else {
@@ -101,7 +108,7 @@ export default class MockRestClient implements IMockRestClient {
     if (this.mockResponseQueue.length > 0) {
       const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
-        return actionParams.value;
+        if (this.isRestClientResponse(actionParams.value)) return actionParams.value;
       }
       throw actionParams.value;
     } else {
@@ -114,7 +121,7 @@ export default class MockRestClient implements IMockRestClient {
     if (this.mockResponseQueue.length > 0) {
       const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
-        return actionParams.value;
+        if (this.isRestClientResponse(actionParams.value)) return actionParams.value;
       }
       throw actionParams.value;
     } else {

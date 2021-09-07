@@ -3,10 +3,14 @@ export type RestClientOptions = {
   maxRedirects?: number;
 }
 
+export type RestClientResponseHeaders = {
+  [index: string]: string;
+}
+
 export type RestClientResponse = {
   statusCode: number,
   statusText?: string,
-  headers?: object,
+  headers?: RestClientResponseHeaders,
   data?: any
 }
 

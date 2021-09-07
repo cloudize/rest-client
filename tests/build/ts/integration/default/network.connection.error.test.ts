@@ -1,0 +1,15 @@
+import {
+  RestClient,
+  NetworkConnectionException,
+} from '../../../../../lib';
+
+describe('Request should throw when performing a GET on', () => {
+  it('an invalid URI', async () => {
+    try {
+      const restClient = new RestClient();
+      await restClient.Get('https://invalid.api.games/301', { Accept: '*/*' }, { maxRedirects: 0 });
+    } catch (error) {
+      expect(error).toBeInstanceOf(NetworkConnectionException);
+    }
+  });
+});

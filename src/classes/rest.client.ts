@@ -16,8 +16,11 @@ export default class RestClient implements IRestClient {
   // eslint-disable-next-line class-methods-use-this
   private HandleError(uri: string, response: AxiosResponse<any>) {
     if (response) {
-      ThrowException(response.status, {
-        statusCode: response.status, statusText: response.statusText, headers: response.headers, data: response.data,
+      ThrowException({
+        statusCode: response.status,
+        statusText: response.statusText,
+        headers: response.headers,
+        data: response.data,
       });
     } else {
       ThrowNetworkConnectionException(uri);

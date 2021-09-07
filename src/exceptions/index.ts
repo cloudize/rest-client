@@ -44,4 +44,5 @@ export { default as Error511NetworkAuthenticationRequired } from './error.511.ne
 export { default as Error520WebServerIsReturningAnUnknownError } from './error.520.web.server.is.returning.an.unknown.error';
 export { default as Error522ConnectionTimedOut } from './error.522.connection.timed.out';
 export { default as Error524ATimeoutOccurred } from './error.524.a.timeout.occurred';
+export { default as CreateException } from './create.exception';
 export { default as ThrowException } from './throw.exception';
