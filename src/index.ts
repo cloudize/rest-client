@@ -1,6 +1,6 @@
 export {
   RestClientBaseException,
-  NetworkConnectionException,
+  CreateException,
   Error301MovedPermanently,
   Error302Found,
   Error303SeeOther,
@@ -44,6 +44,7 @@ export {
   Error520WebServerIsReturningAnUnknownError,
   Error522ConnectionTimedOut,
   Error524ATimeoutOccurred,
+  NetworkConnectionException,
   ThrowException,
   ThrowNetworkConnectionException,
 } from './exceptions';
