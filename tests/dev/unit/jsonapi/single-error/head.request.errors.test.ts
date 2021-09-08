@@ -1,4 +1,5 @@
 import {
+  CreateException,
   MockRestClient,
   Error301MovedPermanently,
   Error302Found,
@@ -44,7 +45,6 @@ import {
   Error522ConnectionTimedOut,
   Error524ATimeoutOccurred,
 } from '../../../../../src';
-import { CreateException } from '../../../../../src/exceptions';
 import { GetJsonAPIHeaders } from '../jsonapi.test.helpers';
 
 describe('Request should succeed when performing a HEAD on an endpoint that returns a', () => {

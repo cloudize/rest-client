@@ -1,4 +1,5 @@
 import {
+  CreateException,
   MockRestClient,
   Error301MovedPermanently,
   Error302Found,
@@ -44,7 +45,6 @@ import {
   Error522ConnectionTimedOut,
   Error524ATimeoutOccurred,
 } from '../../../../../../lib';
-import { CreateException } from '../../../../../../lib/exceptions';
 import { GetJsonAPIErrorsPayload, GetJsonAPIHeaders } from '../jsonapi.test.helpers';
 
 const payload = {};

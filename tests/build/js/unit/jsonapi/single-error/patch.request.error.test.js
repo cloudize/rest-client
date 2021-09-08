@@ -1,4 +1,5 @@
 const {
+  CreateException,
   MockRestClient,
   Error301MovedPermanently,
   Error302Found,
@@ -44,7 +45,6 @@ const {
   Error522ConnectionTimedOut,
   Error524ATimeoutOccurred,
 } = require('../../../../../../lib');
-const { CreateException } = require('../../../../../../lib/exceptions');
 const { GetJsonAPIErrorsPayload, GetJsonAPIHeaders } = require('../jsonapi.test.helpers');
 
 const payload = {};

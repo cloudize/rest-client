@@ -1,4 +1,5 @@
 import {
+  CreateException,
   MockRestClient,
   Error301MovedPermanently,
   Error302Found,
@@ -44,7 +45,6 @@ import {
   Error522ConnectionTimedOut,
   Error524ATimeoutOccurred,
 } from '../../../../../lib';
-import { CreateException } from '../../../../../lib/exceptions';
 
 describe('Request should succeed when performing a GET on an endpoint that returns a', () => {
   it('200 status code', async () => {

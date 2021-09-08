@@ -1,4 +1,5 @@
 import {
+  CreateException,
   MockRestClient,
   Error301MovedPermanently,
   Error302Found,
@@ -44,7 +45,6 @@ import {
   Error522ConnectionTimedOut,
   Error524ATimeoutOccurred,
 } from '../../../../src';
-import { CreateException } from '../../../../src/exceptions';
 
 describe('Request should succeed when performing a DELETE on an endpoint that returns a', () => {
   it('200 status code', async () => {
