@@ -3,7 +3,7 @@
   "author": "API Games Limited",
   "description": "API Games Rest Client",
   "license": "MIT",
-  "version": "1.0.26",
+  "version": "1.0.28",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {

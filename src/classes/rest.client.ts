@@ -3,7 +3,7 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
 } from 'axios';
-import { isDefined } from '@apigames/json';
+import { isDefined, isDefinedAndNotNull } from '@apigames/json';
 import {
   IRestClient,
   RestClientOptions,
@@ -15,7 +15,7 @@ import {
 export default class RestClient implements IRestClient {
   // eslint-disable-next-line class-methods-use-this
   private HandleError(uri: string, response: AxiosResponse<any>) {
-    if (response) {
+    if (isDefinedAndNotNull(response)) {
       ThrowException({
         statusCode: response.status,
         statusText: response.statusText,
