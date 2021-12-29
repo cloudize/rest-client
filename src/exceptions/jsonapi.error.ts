@@ -1,39 +1,39 @@
 export default class JsonAPIError {
-    private _code: string = '';
+  private readonly _code: string = '';
 
-    private _title: string = '';
+  private readonly _title: string = '';
 
-    private _status: number = 500;
+  private readonly _status: number = 500;
 
-    private _detail: string = '';
+  private readonly _detail: string = '';
 
-    private _source: any = '';
+  private readonly _source: any = '';
 
-    constructor(code: string, title: string, status: number, detail: string, source: any) {
-      this._code = code;
-      this._title = title;
-      this._status = status;
-      this._detail = detail;
-      this._source = source;
-    }
+  constructor(code: string, title: string, status: number, detail: string, source: any) {
+    this._code = code;
+    this._title = title;
+    this._status = status;
+    this._detail = detail;
+    this._source = source;
+  }
 
-    get code(): string {
-      return this._code;
-    }
+  get code(): string {
+    return this._code;
+  }
 
-    get detail(): string {
-      return this._detail;
-    }
+  get detail(): string {
+    return this._detail;
+  }
 
-    get source(): string {
-      return this._source;
-    }
+  get source(): string {
+    return this._source;
+  }
 
-    get status(): number {
-      return this._status;
-    }
+  get status(): number {
+    return this._status;
+  }
 
-    get title(): string {
-      return this._title;
-    }
+  get title(): string {
+    return this._title;
+  }
 }

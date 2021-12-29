@@ -33,8 +33,11 @@ export default class RestClient implements IRestClient {
   }
 
   // eslint-disable-next-line consistent-return
-  async Delete(uri: string, headers?: Record<string, string>,
-    options?: RestClientOptions): Promise<RestClientResponse> {
+  async Delete(
+    uri: string,
+    headers?: Record<string, string>,
+    options?: RestClientOptions,
+  ): Promise<RestClientResponse> {
     const axiosConfig: AxiosRequestConfig = {
       url: uri,
       method: 'GET',
@@ -64,8 +67,11 @@ export default class RestClient implements IRestClient {
   }
 
   // eslint-disable-next-line consistent-return
-  async Get(uri: string, headers?: Record<string, string>,
-    options?: RestClientOptions): Promise<RestClientResponse> {
+  async Get(
+    uri: string,
+    headers?: Record<string, string>,
+    options?: RestClientOptions,
+  ): Promise<RestClientResponse> {
     const axiosConfig: AxiosRequestConfig = {
       url: uri,
       method: 'GET',
@@ -95,8 +101,11 @@ export default class RestClient implements IRestClient {
   }
 
   // eslint-disable-next-line consistent-return
-  async Head(uri: string, headers?: Record<string, string>,
-    options?: RestClientOptions): Promise<RestClientResponse> {
+  async Head(
+    uri: string,
+    headers?: Record<string, string>,
+    options?: RestClientOptions,
+  ): Promise<RestClientResponse> {
     const axiosConfig: AxiosRequestConfig = {
       url: uri,
       method: 'HEAD',
@@ -126,8 +135,12 @@ export default class RestClient implements IRestClient {
   }
 
   // eslint-disable-next-line consistent-return
-  async Patch(uri: string, payload: any, headers?: Record<string, string>,
-    options?: RestClientOptions): Promise<RestClientResponse> {
+  async Patch(
+    uri: string,
+    payload: any,
+    headers?: Record<string, string>,
+    options?: RestClientOptions,
+  ): Promise<RestClientResponse> {
     const axiosConfig: AxiosRequestConfig = {
       url: uri,
       method: 'PATCH',
@@ -157,8 +170,12 @@ export default class RestClient implements IRestClient {
   }
 
   // eslint-disable-next-line consistent-return
-  async Post(uri: string, payload: any, headers?: Record<string, string>,
-    options?: RestClientOptions): Promise<RestClientResponse> {
+  async Post(
+    uri: string,
+    payload: any,
+    headers?: Record<string, string>,
+    options?: RestClientOptions,
+  ): Promise<RestClientResponse> {
     const axiosConfig: AxiosRequestConfig = {
       url: uri,
       method: 'POST',
@@ -188,8 +205,12 @@ export default class RestClient implements IRestClient {
   }
 
   // eslint-disable-next-line consistent-return
-  async Put(uri: string, payload: any, headers?: Record<string, string>,
-    options?: RestClientOptions): Promise<RestClientResponse> {
+  async Put(
+    uri: string,
+    payload: any,
+    headers?: Record<string, string>,
+    options?: RestClientOptions,
+  ): Promise<RestClientResponse> {
     const axiosConfig: AxiosRequestConfig = {
       url: uri,
       method: 'PUT',

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { hasProperty, isNumber } from '@apigames/json';
 import {
   IMockRestClient,
@@ -51,9 +52,11 @@ export default class MockRestClient implements IMockRestClient {
     return (hasProperty(value, 'statusCode') && isNumber(value.statusCode));
   }
 
-  // eslint-disable-next-line no-unused-vars
-  async Delete(uri: string, headers?: Record<string, string>,
-    options?: RestClientOptions): Promise<RestClientResponse> {
+  async Delete(
+    uri: string,
+    headers?: Record<string, string>,
+    options?: RestClientOptions,
+  ): Promise<RestClientResponse> {
     if (this.mockResponseQueue.length > 0) {
       const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
@@ -66,8 +69,11 @@ export default class MockRestClient implements IMockRestClient {
   }
 
   // eslint-disable-next-line no-unused-vars
-  async Get(uri: string, headers?: Record<string, string>,
-    options?: RestClientOptions): Promise<RestClientResponse> {
+  async Get(
+    uri: string,
+    headers?: Record<string, string>,
+    options?: RestClientOptions,
+  ): Promise<RestClientResponse> {
     if (this.mockResponseQueue.length > 0) {
       const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
@@ -80,8 +86,11 @@ export default class MockRestClient implements IMockRestClient {
   }
 
   // eslint-disable-next-line no-unused-vars
-  async Head(uri: string, headers?: Record<string, string>,
-    options?: RestClientOptions): Promise<RestClientResponse> {
+  async Head(
+    uri: string,
+    headers?: Record<string, string>,
+    options?: RestClientOptions,
+  ): Promise<RestClientResponse> {
     if (this.mockResponseQueue.length > 0) {
       const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
@@ -94,8 +103,12 @@ export default class MockRestClient implements IMockRestClient {
   }
 
   // eslint-disable-next-line no-unused-vars
-  async Patch(uri: string, payload: any, headers?: Record<string, string>,
-    options?: RestClientOptions): Promise<RestClientResponse> {
+  async Patch(
+    uri: string,
+    payload: any,
+    headers?: Record<string, string>,
+    options?: RestClientOptions,
+  ): Promise<RestClientResponse> {
     if (this.mockResponseQueue.length > 0) {
       const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
@@ -108,8 +121,12 @@ export default class MockRestClient implements IMockRestClient {
   }
 
   // eslint-disable-next-line no-unused-vars
-  async Post(uri: string, payload: any, headers?: Record<string, string>,
-    options?: RestClientOptions): Promise<RestClientResponse> {
+  async Post(
+    uri: string,
+    payload: any,
+    headers?: Record<string, string>,
+    options?: RestClientOptions,
+  ): Promise<RestClientResponse> {
     if (this.mockResponseQueue.length > 0) {
       const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
@@ -122,8 +139,12 @@ export default class MockRestClient implements IMockRestClient {
   }
 
   // eslint-disable-next-line no-unused-vars
-  async Put(uri: string, payload: any, headers?: Record<string, string>,
-    options?: RestClientOptions): Promise<RestClientResponse> {
+  async Put(
+    uri: string,
+    payload: any,
+    headers?: Record<string, string>,
+    options?: RestClientOptions,
+  ): Promise<RestClientResponse> {
     if (this.mockResponseQueue.length > 0) {
       const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
