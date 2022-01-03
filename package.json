@@ -23,7 +23,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@apigames/json": "22.1.0-dev.5",
+    "@apigames/json": "22.1.0-dev.6",
     "axios": "0.24.0"
   },
   "devDependencies": {
