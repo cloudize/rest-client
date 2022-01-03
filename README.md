@@ -1,5 +1,11 @@
 # API Games Rest Client
 
+![](https://img.shields.io/badge/build-passing-brightgreen)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/4d7ed14f77f54d6595d6f758ab6050d6)](https://www.codacy.com/gh/apigames-public/rest-client/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=apigames-public/rest-client&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/4d7ed14f77f54d6595d6f758ab6050d6)](https://www.codacy.com/gh/apigames-public/rest-client/dashboard?utm_source=github.com&utm_medium=referral&utm_content=apigames-public/rest-client&utm_campaign=Badge_Coverage)
+![](https://img.shields.io/npm/v/@apigames/rest-client)
+![](https://img.shields.io/badge/license-MIT-blue)
+
 This package includes the API Games Rest Client and its associated exception classes.
 
 ## List of features
