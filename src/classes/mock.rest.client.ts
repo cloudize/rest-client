@@ -52,11 +52,7 @@ export default class MockRestClient implements IMockRestClient {
     return (hasProperty(value, 'statusCode') && isNumber(value.statusCode));
   }
 
-  async Delete(
-    uri: string,
-    headers?: Record<string, string>,
-    options?: RestClientOptions,
-  ): Promise<RestClientResponse> {
+  private async ProcessNextMockResponse(methodName: string): Promise<RestClientResponse> {
     if (this.mockResponseQueue.length > 0) {
       const actionParams = this.mockResponseQueue.shift();
       if (actionParams.action === MockResponseType.Resolve) {
@@ -64,8 +60,16 @@ export default class MockRestClient implements IMockRestClient {
       }
       throw actionParams.value;
     } else {
-      throw new Error('Please mock the Delete() response document using MockResolve() or MockReject().');
+      throw new Error(`Please mock the ${methodName}() response document using MockResolve() or MockReject().`);
     }
+  }
+
+  async Delete(
+    uri: string,
+    headers?: Record<string, string>,
+    options?: RestClientOptions,
+  ): Promise<RestClientResponse> {
+    return this.ProcessNextMockResponse('Delete');
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -74,15 +78,7 @@ export default class MockRestClient implements IMockRestClient {
     headers?: Record<string, string>,
     options?: RestClientOptions,
   ): Promise<RestClientResponse> {
-    if (this.mockResponseQueue.length > 0) {
-      const actionParams = this.mockResponseQueue.shift();
-      if (actionParams.action === MockResponseType.Resolve) {
-        if (this.isRestClientResponse(actionParams.value)) return actionParams.value;
-      }
-      throw actionParams.value;
-    } else {
-      throw new Error('Please mock the Get() response document using MockResolve() or MockReject().');
-    }
+    return this.ProcessNextMockResponse('Get');
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -91,15 +87,7 @@ export default class MockRestClient implements IMockRestClient {
     headers?: Record<string, string>,
     options?: RestClientOptions,
   ): Promise<RestClientResponse> {
-    if (this.mockResponseQueue.length > 0) {
-      const actionParams = this.mockResponseQueue.shift();
-      if (actionParams.action === MockResponseType.Resolve) {
-        if (this.isRestClientResponse(actionParams.value)) return actionParams.value;
-      }
-      throw actionParams.value;
-    } else {
-      throw new Error('Please mock the Head() response document using MockResolve() or MockReject().');
-    }
+    return this.ProcessNextMockResponse('Head');
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -109,15 +97,7 @@ export default class MockRestClient implements IMockRestClient {
     headers?: Record<string, string>,
     options?: RestClientOptions,
   ): Promise<RestClientResponse> {
-    if (this.mockResponseQueue.length > 0) {
-      const actionParams = this.mockResponseQueue.shift();
-      if (actionParams.action === MockResponseType.Resolve) {
-        if (this.isRestClientResponse(actionParams.value)) return actionParams.value;
-      }
-      throw actionParams.value;
-    } else {
-      throw new Error('Please mock the Patch() response document using MockResolve() or MockReject().');
-    }
+    return this.ProcessNextMockResponse('Patch');
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -127,15 +107,7 @@ export default class MockRestClient implements IMockRestClient {
     headers?: Record<string, string>,
     options?: RestClientOptions,
   ): Promise<RestClientResponse> {
-    if (this.mockResponseQueue.length > 0) {
-      const actionParams = this.mockResponseQueue.shift();
-      if (actionParams.action === MockResponseType.Resolve) {
-        if (this.isRestClientResponse(actionParams.value)) return actionParams.value;
-      }
-      throw actionParams.value;
-    } else {
-      throw new Error('Please mock the Post() response document using MockResolve() or MockReject().');
-    }
+    return this.ProcessNextMockResponse('Post');
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -145,15 +117,7 @@ export default class MockRestClient implements IMockRestClient {
     headers?: Record<string, string>,
     options?: RestClientOptions,
   ): Promise<RestClientResponse> {
-    if (this.mockResponseQueue.length > 0) {
-      const actionParams = this.mockResponseQueue.shift();
-      if (actionParams.action === MockResponseType.Resolve) {
-        if (this.isRestClientResponse(actionParams.value)) return actionParams.value;
-      }
-      throw actionParams.value;
-    } else {
-      throw new Error('Please mock the Put() response document using MockResolve() or MockReject().');
-    }
+    return this.ProcessNextMockResponse('Put');
   }
 
   reset() {

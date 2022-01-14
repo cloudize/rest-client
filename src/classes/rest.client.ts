@@ -1,7 +1,7 @@
 import axios, {
   AxiosError,
   AxiosRequestConfig,
-  AxiosResponse,
+  AxiosResponse, Method,
 } from 'axios';
 import { isDefined, isDefinedAndNotNull } from '@apigames/json';
 import {
@@ -32,31 +32,48 @@ export default class RestClient implements IRestClient {
     return (error as AxiosError).isAxiosError !== undefined;
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  private PrepareRequestConfig(
+    uri: string,
+    method: Method,
+    headers?: Record<string, string>,
+    options?: RestClientOptions,
+  ) :AxiosRequestConfig {
+    const config: AxiosRequestConfig = {
+      url: uri,
+      method,
+      headers,
+    };
+
+    if (isDefined(options)) {
+      if (isDefined(options.queryParams)) config.params = options.queryParams;
+      if (isDefined(options.maxRedirects)) config.maxRedirects = options.maxRedirects;
+    }
+
+    return config;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  private ProcessResponse(axiosResponse: AxiosResponse): RestClientResponse {
+    return {
+      statusCode: axiosResponse.status,
+      statusText: axiosResponse.statusText,
+      headers: axiosResponse.headers,
+      data: axiosResponse.data === '' ? undefined : axiosResponse.data,
+    };
+  }
+
   // eslint-disable-next-line consistent-return
   async Delete(
     uri: string,
     headers?: Record<string, string>,
     options?: RestClientOptions,
   ): Promise<RestClientResponse> {
-    const axiosConfig: AxiosRequestConfig = {
-      url: uri,
-      method: 'GET',
-      headers,
-    };
-
-    if (isDefined(options)) {
-      if (isDefined(options.queryParams)) axiosConfig.params = options.queryParams;
-      if (isDefined(options.maxRedirects)) axiosConfig.maxRedirects = options.maxRedirects;
-    }
-
     try {
-      const axiosResponse: AxiosResponse = await axios.delete(uri, axiosConfig);
-      return {
-        statusCode: axiosResponse.status,
-        statusText: axiosResponse.statusText,
-        headers: axiosResponse.headers,
-        data: axiosResponse.data === '' ? undefined : axiosResponse.data,
-      };
+      return this.ProcessResponse(await axios.delete(
+        uri,
+        this.PrepareRequestConfig(uri, 'DELETE', headers, options),
+      ));
     } catch (error) {
       if (this.IsAxiosError(error)) {
         this.HandleError(uri, error.response);
@@ -72,25 +89,11 @@ export default class RestClient implements IRestClient {
     headers?: Record<string, string>,
     options?: RestClientOptions,
   ): Promise<RestClientResponse> {
-    const axiosConfig: AxiosRequestConfig = {
-      url: uri,
-      method: 'GET',
-      headers,
-    };
-
-    if (isDefined(options)) {
-      if (isDefined(options.queryParams)) axiosConfig.params = options.queryParams;
-      if (isDefined(options.maxRedirects)) axiosConfig.maxRedirects = options.maxRedirects;
-    }
-
     try {
-      const axiosResponse: AxiosResponse = await axios.get(uri, axiosConfig);
-      return {
-        statusCode: axiosResponse.status,
-        statusText: axiosResponse.statusText,
-        headers: axiosResponse.headers,
-        data: axiosResponse.data === '' ? undefined : axiosResponse.data,
-      };
+      return this.ProcessResponse(await axios.get(
+        uri,
+        this.PrepareRequestConfig(uri, 'GET', headers, options),
+      ));
     } catch (error) {
       if (this.IsAxiosError(error)) {
         this.HandleError(uri, error.response);
@@ -106,25 +109,11 @@ export default class RestClient implements IRestClient {
     headers?: Record<string, string>,
     options?: RestClientOptions,
   ): Promise<RestClientResponse> {
-    const axiosConfig: AxiosRequestConfig = {
-      url: uri,
-      method: 'HEAD',
-      headers,
-    };
-
-    if (isDefined(options)) {
-      if (isDefined(options.queryParams)) axiosConfig.params = options.queryParams;
-      if (isDefined(options.maxRedirects)) axiosConfig.maxRedirects = options.maxRedirects;
-    }
-
     try {
-      const axiosResponse: AxiosResponse = await axios.head(uri, axiosConfig);
-      return {
-        statusCode: axiosResponse.status,
-        statusText: axiosResponse.statusText,
-        headers: axiosResponse.headers,
-        data: axiosResponse.data === '' ? undefined : axiosResponse.data,
-      };
+      return this.ProcessResponse(await axios.head(
+        uri,
+        this.PrepareRequestConfig(uri, 'HEAD', headers, options),
+      ));
     } catch (error) {
       if (this.IsAxiosError(error)) {
         this.HandleError(uri, error.response);
@@ -141,25 +130,12 @@ export default class RestClient implements IRestClient {
     headers?: Record<string, string>,
     options?: RestClientOptions,
   ): Promise<RestClientResponse> {
-    const axiosConfig: AxiosRequestConfig = {
-      url: uri,
-      method: 'PATCH',
-      headers,
-    };
-
-    if (isDefined(options)) {
-      if (isDefined(options.queryParams)) axiosConfig.params = options.queryParams;
-      if (isDefined(options.maxRedirects)) axiosConfig.maxRedirects = options.maxRedirects;
-    }
-
     try {
-      const axiosResponse: AxiosResponse = await axios.patch(uri, payload, axiosConfig);
-      return {
-        statusCode: axiosResponse.status,
-        statusText: axiosResponse.statusText,
-        headers: axiosResponse.headers,
-        data: axiosResponse.data === '' ? undefined : axiosResponse.data,
-      };
+      return this.ProcessResponse(await axios.patch(
+        uri,
+        payload,
+        this.PrepareRequestConfig(uri, 'PATCH', headers, options),
+      ));
     } catch (error) {
       if (this.IsAxiosError(error)) {
         this.HandleError(uri, error.response);
@@ -176,25 +152,12 @@ export default class RestClient implements IRestClient {
     headers?: Record<string, string>,
     options?: RestClientOptions,
   ): Promise<RestClientResponse> {
-    const axiosConfig: AxiosRequestConfig = {
-      url: uri,
-      method: 'POST',
-      headers,
-    };
-
-    if (isDefined(options)) {
-      if (isDefined(options.queryParams)) axiosConfig.params = options.queryParams;
-      if (isDefined(options.maxRedirects)) axiosConfig.maxRedirects = options.maxRedirects;
-    }
-
     try {
-      const axiosResponse: AxiosResponse = await axios.post(uri, payload, axiosConfig);
-      return {
-        statusCode: axiosResponse.status,
-        statusText: axiosResponse.statusText,
-        headers: axiosResponse.headers,
-        data: axiosResponse.data === '' ? undefined : axiosResponse.data,
-      };
+      return this.ProcessResponse(await axios.post(
+        uri,
+        payload,
+        this.PrepareRequestConfig(uri, 'POST', headers, options),
+      ));
     } catch (error) {
       if (this.IsAxiosError(error)) {
         this.HandleError(uri, error.response);
@@ -211,25 +174,12 @@ export default class RestClient implements IRestClient {
     headers?: Record<string, string>,
     options?: RestClientOptions,
   ): Promise<RestClientResponse> {
-    const axiosConfig: AxiosRequestConfig = {
-      url: uri,
-      method: 'PUT',
-      headers,
-    };
-
-    if (isDefined(options)) {
-      if (isDefined(options.queryParams)) axiosConfig.params = options.queryParams;
-      if (isDefined(options.maxRedirects)) axiosConfig.maxRedirects = options.maxRedirects;
-    }
-
     try {
-      const axiosResponse: AxiosResponse = await axios.put(uri, payload, axiosConfig);
-      return {
-        statusCode: axiosResponse.status,
-        statusText: axiosResponse.statusText,
-        headers: axiosResponse.headers,
-        data: axiosResponse.data === '' ? undefined : axiosResponse.data,
-      };
+      return this.ProcessResponse(await axios.put(
+        uri,
+        payload,
+        this.PrepareRequestConfig(uri, 'PUT', headers, options),
+      ));
     } catch (error) {
       if (this.IsAxiosError(error)) {
         this.HandleError(uri, error.response);
