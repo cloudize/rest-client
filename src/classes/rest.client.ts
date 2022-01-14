@@ -14,20 +14,6 @@ import {
 
 export default class RestClient implements IRestClient {
   // eslint-disable-next-line class-methods-use-this
-  private HandleError(uri: string, response: AxiosResponse<any>) {
-    if (isDefinedAndNotNull(response)) {
-      ThrowException({
-        statusCode: response.status,
-        statusText: response.statusText,
-        headers: response.headers,
-        data: response.data,
-      });
-    } else {
-      ThrowNetworkConnectionException(uri);
-    }
-  }
-
-  // eslint-disable-next-line class-methods-use-this
   private IsAxiosError(error: any): error is AxiosError {
     return (error as AxiosError).isAxiosError !== undefined;
   }
@@ -53,6 +39,23 @@ export default class RestClient implements IRestClient {
     return config;
   }
 
+  private ProcessError(uri: string, error: any) {
+    if (this.IsAxiosError(error)) {
+      if (isDefinedAndNotNull(error.response)) {
+        ThrowException({
+          statusCode: error.response.status,
+          statusText: error.response.statusText,
+          headers: error.response.headers,
+          data: error.response.data,
+        });
+      } else {
+        ThrowNetworkConnectionException(uri);
+      }
+    } else {
+      throw error;
+    }
+  }
+
   // eslint-disable-next-line class-methods-use-this
   private ProcessResponse(axiosResponse: AxiosResponse): RestClientResponse {
     return {
@@ -75,11 +78,7 @@ export default class RestClient implements IRestClient {
         this.PrepareRequestConfig(uri, 'DELETE', headers, options),
       ));
     } catch (error) {
-      if (this.IsAxiosError(error)) {
-        this.HandleError(uri, error.response);
-      } else {
-        throw error;
-      }
+      this.ProcessError(uri, error);
     }
   }
 
@@ -95,11 +94,7 @@ export default class RestClient implements IRestClient {
         this.PrepareRequestConfig(uri, 'GET', headers, options),
       ));
     } catch (error) {
-      if (this.IsAxiosError(error)) {
-        this.HandleError(uri, error.response);
-      } else {
-        throw error;
-      }
+      this.ProcessError(uri, error);
     }
   }
 
@@ -115,11 +110,7 @@ export default class RestClient implements IRestClient {
         this.PrepareRequestConfig(uri, 'HEAD', headers, options),
       ));
     } catch (error) {
-      if (this.IsAxiosError(error)) {
-        this.HandleError(uri, error.response);
-      } else {
-        throw error;
-      }
+      this.ProcessError(uri, error);
     }
   }
 
@@ -137,11 +128,7 @@ export default class RestClient implements IRestClient {
         this.PrepareRequestConfig(uri, 'PATCH', headers, options),
       ));
     } catch (error) {
-      if (this.IsAxiosError(error)) {
-        this.HandleError(uri, error.response);
-      } else {
-        throw error;
-      }
+      this.ProcessError(uri, error);
     }
   }
 
@@ -159,11 +146,7 @@ export default class RestClient implements IRestClient {
         this.PrepareRequestConfig(uri, 'POST', headers, options),
       ));
     } catch (error) {
-      if (this.IsAxiosError(error)) {
-        this.HandleError(uri, error.response);
-      } else {
-        throw error;
-      }
+      this.ProcessError(uri, error);
     }
   }
 
@@ -181,11 +164,7 @@ export default class RestClient implements IRestClient {
         this.PrepareRequestConfig(uri, 'PUT', headers, options),
       ));
     } catch (error) {
-      if (this.IsAxiosError(error)) {
-        this.HandleError(uri, error.response);
-      } else {
-        throw error;
-      }
+      this.ProcessError(uri, error);
     }
   }
 }
