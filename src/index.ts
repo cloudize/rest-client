@@ -52,6 +52,7 @@ export {
 export type {
   RestClientOptions,
   RestClientResponse,
+  RestClientResponseHeaders,
   IMockRestClient,
   IRestClient,
 } from './interfaces';
