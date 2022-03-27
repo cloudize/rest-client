@@ -1,8 +1,8 @@
 # API Games Rest Client
 
 ![](https://img.shields.io/badge/build-passing-brightgreen)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/4d7ed14f77f54d6595d6f758ab6050d6)](https://www.codacy.com/gh/apigames-public/rest-client/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=apigames-public/rest-client&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/4d7ed14f77f54d6595d6f758ab6050d6)](https://www.codacy.com/gh/apigames-public/rest-client/dashboard?utm_source=github.com&utm_medium=referral&utm_content=apigames-public/rest-client&utm_campaign=Badge_Coverage)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/2ca31bf2cd554ffd8dab537495ee980b)](https://www.codacy.com/gh/apigames-core/rest-client/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=apigames-core/rest-client&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/2ca31bf2cd554ffd8dab537495ee980b)](https://www.codacy.com/gh/apigames-core/rest-client/dashboard?utm_source=github.com&utm_medium=referral&utm_content=apigames-core/rest-client&utm_campaign=Badge_Coverage)
 ![](https://img.shields.io/npm/v/@apigames/rest-client)
 ![](https://img.shields.io/badge/license-MIT-blue)
 
