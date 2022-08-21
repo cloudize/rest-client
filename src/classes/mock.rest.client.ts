@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { hasProperty, isNumber } from '@apigames/json';
+import { hasProperty, isNumber } from '@cloudize/json';
 import {
   IMockRestClient,
   RestClientBaseException,
