@@ -1,6 +1,6 @@
 import {
   hasProperty, isArray, isDefined, isString,
-} from '@apigames/json';
+} from '@cloudize/json';
 import JsonAPIError from './jsonapi.error';
 
 export interface RestClientExceptionData {

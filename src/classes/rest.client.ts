@@ -3,7 +3,7 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse, Method,
 } from 'axios';
-import { isDefined, isDefinedAndNotNull } from '@apigames/json';
+import { isDefined, isDefinedAndNotNull } from '@cloudize/json';
 import {
   IRestClient,
   RestClientOptions,

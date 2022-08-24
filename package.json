@@ -1,5 +1,5 @@
 {
-  "name": "@apigames/rest-client",
+  "name": "@cloudize/rest-client",
   "author": {
     "name" : "API Games Limited",
     "email" : "hello@api.games",
@@ -11,7 +11,7 @@
       "email" : "erich.kuba@api.games"
     }
   ],
-  "description": "API Games Rest Client",
+  "description": "Cloudize Rest Client",
   "license": "MIT",
   "version": "22.1.12",
   "main": "lib/index.js",
@@ -33,7 +33,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@apigames/json": "22.1.12",
+    "@cloudize/json": "22.1.12",
     "axios": "0.27.2"
   },
   "devDependencies": {
@@ -54,10 +54,10 @@
   "eslintConfig": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/apigames-core/rest-client.git"
+    "url": "git+https://github.com/cloudize/rest-client.git"
   },
   "bugs": {
-    "url": "https://github.com/apigames-core/rest-client/issues"
+    "url": "https://github.com/cloudize/rest-client/issues"
   },
-  "homepage": "https://github.com/apigames-core/rest-client#readme"
+  "homepage": "https://github.com/cloudize/rest-client#readme"
 }
