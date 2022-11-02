@@ -22,7 +22,7 @@ $ npm i @cloudize/rest-client
 
 ## Authors or Acknowledgments
 
-*   API Games Limited
+*   Cloudize Limited
 
 ## License
 
