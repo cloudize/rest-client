@@ -43,6 +43,7 @@ import {
   Error520WebServerIsReturningAnUnknownError,
   Error522ConnectionTimedOut,
   Error524ATimeoutOccurred,
+  RestClientErrorMode,
 } from '../../../../src';
 
 const hostName = 'http://127.0.0.1:3000';
@@ -117,6 +118,12 @@ describe('Request should succeed when performing a DELETE on an endpoint that re
     const restClient = new RestClient();
     const response = await restClient.Delete(`${hostName}/308`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
+  });
+
+  it('400 status code (when the error mode is set to response)', async () => {
+    const restClient = new RestClient(RestClientErrorMode.RESPONSE);
+    const response = await restClient.Delete(`${hostName}/400`, { Accept: '*/*' });
+    expect(response.statusCode).toBe(400);
   });
 });
 

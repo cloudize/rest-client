@@ -57,4 +57,4 @@ export type {
   IRestClient,
 } from './interfaces';
 
-export { MockRestClient, RestClient } from './classes';
+export { MockRestClient, RestClient, RestClientErrorMode } from './classes';
