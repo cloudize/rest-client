@@ -43,7 +43,6 @@ import {
   Error520WebServerIsReturningAnUnknownError,
   Error522ConnectionTimedOut,
   Error524ATimeoutOccurred,
-  RestClientErrorMode,
 } from '../../../../src';
 
 const payload = 'Sample payload.';
@@ -123,7 +122,7 @@ describe('Request should succeed when performing a POST on an endpoint that retu
   });
 
   it('400 status code (when the error mode is set to response)', async () => {
-    const restClient = new RestClient(RestClientErrorMode.RESPONSE);
+    const restClient = new RestClient(false);
     const response = await restClient.Post(`${hostName}/400`, payload, { Accept: '*/*' });
     expect(response.statusCode).toBe(400);
   });

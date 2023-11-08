@@ -13,7 +13,7 @@
   ],
   "description": "API Games Rest Client",
   "license": "MIT",
-  "version": "23.3.4",
+  "version": "23.3.5",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {

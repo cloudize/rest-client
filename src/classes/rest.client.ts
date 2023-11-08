@@ -3,7 +3,7 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse, Method,
 } from 'axios';
-import { isDefined, isDefinedAndNotNull } from '@apigames/json';
+import { isDefined, isDefinedAndNotNull, isTrue } from '@apigames/json';
 import {
   IRestClient,
   RestClientOptions,
@@ -12,16 +12,11 @@ import {
   ThrowNetworkConnectionException,
 } from '..';
 
-export enum RestClientErrorMode {
-  THROW,
-  RESPONSE,
-}
-
 export default class RestClient implements IRestClient {
-  private readonly errorMode: RestClientErrorMode;
+  private readonly throwOnError: boolean;
 
-  constructor(errorMode: RestClientErrorMode = RestClientErrorMode.THROW) {
-    this.errorMode = errorMode;
+  constructor(throwOnError: boolean = true) {
+    this.throwOnError = throwOnError;
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -53,29 +48,27 @@ export default class RestClient implements IRestClient {
   private ProcessError(uri: string, error: any): RestClientResponse {
     if (this.IsAxiosError(error)) {
       if (isDefinedAndNotNull(error.response)) {
-        switch (this.errorMode) {
-          case RestClientErrorMode.RESPONSE:
-            return {
-              statusCode: error.response.status,
-              statusText: error.response.statusText,
-              headers: error.response.headers,
-              data: error.response.data === '' ? undefined : error.response.data,
-            }
-            break
-          default:
-            ThrowException({
-              statusCode: error.response.status,
-              statusText: error.response.statusText,
-              headers: error.response.headers,
-              data: error.response.data,
-            });
+        if (isTrue(this.throwOnError)) {
+          ThrowException({
+            statusCode: error.response.status,
+            statusText: error.response.statusText,
+            headers: error.response.headers,
+            data: error.response.data,
+          });
+          return undefined;
         }
-      } else {
-        ThrowNetworkConnectionException(uri);
+
+        return {
+          statusCode: error.response.status,
+          statusText: error.response.statusText,
+          headers: error.response.headers,
+          data: error.response.data === '' ? undefined : error.response.data,
+        };
       }
-    } else {
-      throw error;
+      ThrowNetworkConnectionException(uri);
+      return undefined;
     }
+    throw error;
   }
 
   // eslint-disable-next-line class-methods-use-this
