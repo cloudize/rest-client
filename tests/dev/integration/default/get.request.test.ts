@@ -118,6 +118,12 @@ describe('Request should succeed when performing a GET on an endpoint that retur
     const response = await restClient.Get(`${hostName}/308`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
   });
+
+  it('400 status code (when the error mode is set to response)', async () => {
+    const restClient = new RestClient(false);
+    const response = await restClient.Get(`${hostName}/400`, { Accept: '*/*' });
+    expect(response.statusCode).toBe(400);
+  });
 });
 
 describe('Request should fail and throw when performing a GET on an endpoint that returns a', () => {

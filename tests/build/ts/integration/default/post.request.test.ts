@@ -120,6 +120,12 @@ describe('Request should succeed when performing a POST on an endpoint that retu
     const response = await restClient.Post(`${hostName}/308`, payload, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
   });
+
+  it('400 status code (when the error mode is set to response)', async () => {
+    const restClient = new RestClient(false);
+    const response = await restClient.Post(`${hostName}/400`, payload, { Accept: '*/*' });
+    expect(response.statusCode).toBe(400);
+  });
 });
 
 describe('Request should fail and throw when performing a POST on an endpoint that returns a', () => {

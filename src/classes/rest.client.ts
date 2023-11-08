@@ -3,7 +3,7 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse, Method,
 } from 'axios';
-import { isDefined, isDefinedAndNotNull } from '@cloudize/json';
+import { isDefined, isDefinedAndNotNull, isTrue } from '@cloudize/json';
 import {
   IRestClient,
   RestClientOptions,
@@ -13,6 +13,12 @@ import {
 } from '..';
 
 export default class RestClient implements IRestClient {
+  private readonly throwOnError: boolean;
+
+  constructor(throwOnError: boolean = true) {
+    this.throwOnError = throwOnError;
+  }
+
   // eslint-disable-next-line class-methods-use-this
   private IsAxiosError(error: any): error is AxiosError {
     return (error as AxiosError).isAxiosError !== undefined;
@@ -39,21 +45,30 @@ export default class RestClient implements IRestClient {
     return config;
   }
 
-  private ProcessError(uri: string, error: any) {
+  private ProcessError(uri: string, error: any): RestClientResponse {
     if (this.IsAxiosError(error)) {
       if (isDefinedAndNotNull(error.response)) {
-        ThrowException({
+        if (isTrue(this.throwOnError)) {
+          ThrowException({
+            statusCode: error.response.status,
+            statusText: error.response.statusText,
+            headers: error.response.headers,
+            data: error.response.data,
+          });
+          return undefined;
+        }
+
+        return {
           statusCode: error.response.status,
           statusText: error.response.statusText,
           headers: error.response.headers,
-          data: error.response.data,
-        });
-      } else {
-        ThrowNetworkConnectionException(uri);
+          data: error.response.data === '' ? undefined : error.response.data,
+        };
       }
-    } else {
-      throw error;
+      ThrowNetworkConnectionException(uri);
+      return undefined;
     }
+    throw error;
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -78,7 +93,7 @@ export default class RestClient implements IRestClient {
         this.PrepareRequestConfig(uri, 'DELETE', headers, options),
       ));
     } catch (error) {
-      this.ProcessError(uri, error);
+      return this.ProcessError(uri, error);
     }
   }
 
@@ -94,7 +109,7 @@ export default class RestClient implements IRestClient {
         this.PrepareRequestConfig(uri, 'GET', headers, options),
       ));
     } catch (error) {
-      this.ProcessError(uri, error);
+      return this.ProcessError(uri, error);
     }
   }
 
@@ -110,7 +125,7 @@ export default class RestClient implements IRestClient {
         this.PrepareRequestConfig(uri, 'HEAD', headers, options),
       ));
     } catch (error) {
-      this.ProcessError(uri, error);
+      return this.ProcessError(uri, error);
     }
   }
 
@@ -128,7 +143,7 @@ export default class RestClient implements IRestClient {
         this.PrepareRequestConfig(uri, 'PATCH', headers, options),
       ));
     } catch (error) {
-      this.ProcessError(uri, error);
+      return this.ProcessError(uri, error);
     }
   }
 
@@ -146,7 +161,7 @@ export default class RestClient implements IRestClient {
         this.PrepareRequestConfig(uri, 'POST', headers, options),
       ));
     } catch (error) {
-      this.ProcessError(uri, error);
+      return this.ProcessError(uri, error);
     }
   }
 
@@ -164,7 +179,7 @@ export default class RestClient implements IRestClient {
         this.PrepareRequestConfig(uri, 'PUT', headers, options),
       ));
     } catch (error) {
-      this.ProcessError(uri, error);
+      return this.ProcessError(uri, error);
     }
   }
 }

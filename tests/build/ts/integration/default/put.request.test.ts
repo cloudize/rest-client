@@ -120,6 +120,12 @@ describe('Request should succeed when performing a PUT on an endpoint that retur
     const response = await restClient.Put(`${hostName}/308`, payload, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
   });
+
+  it('400 status code (when the error mode is set to response)', async () => {
+    const restClient = new RestClient(false);
+    const response = await restClient.Put(`${hostName}/400`, payload, { Accept: '*/*' });
+    expect(response.statusCode).toBe(400);
+  });
 });
 
 describe('Request should fail and throw when performing a PUT on an endpoint that returns a', () => {
