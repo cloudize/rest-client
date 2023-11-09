@@ -1,5 +1,5 @@
 import {
-  hasProperty, isArray, isDefined, isString,
+  hasProperty, isArrayOfObjects, isDefined, isString,
 } from '@apigames/json';
 import JsonAPIError from './jsonapi.error';
 
@@ -23,23 +23,10 @@ export default class RestClientBaseException extends Error {
   }
 
   private static HasJsonAPIErrors(response: RestClientExceptionData): boolean {
-    let hasValidContentType: boolean = false;
-    let contentTypes: string[] = [];
-
-    if (isDefined(response.headers)) {
-      // eslint-disable-next-line no-restricted-syntax
-      for (const headerName in response.headers) {
-        if (headerName.toLowerCase() === 'content-type') {
-          contentTypes = response.headers[headerName].replace('; ', ';').split(';');
-          if ((contentTypes.length > 0) && (contentTypes[0] === 'application/vnd.api+json')) hasValidContentType = true;
-        }
-      }
-    }
-
-    return (hasValidContentType
-        && isDefined(response.data)
+    return (isDefined(response.data)
         && hasProperty(response.data, 'errors')
-        && isArray(response.data.errors));
+        && isArrayOfObjects(response.data.errors)
+    );
   }
 
   private LoadJsonAPIErrors(response: RestClientExceptionData) {
