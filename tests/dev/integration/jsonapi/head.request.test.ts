@@ -1,3 +1,4 @@
+import { isEmpty, isString } from '@cloudize/json';
 import {
   RestClient,
   Error301MovedPermanently,
@@ -52,6 +53,10 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/200`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('Cloudize HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toBeUndefined();
   });
 
@@ -59,6 +64,10 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/201`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(201);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('Cloudize HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toBeUndefined();
   });
 
@@ -66,6 +75,10 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/202`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(202);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('Cloudize HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toBeUndefined();
   });
 
@@ -73,6 +86,10 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/203`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(203);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('Cloudize HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toBeUndefined();
   });
 
@@ -80,6 +97,10 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/206`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(206);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('Cloudize HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toBeUndefined();
   });
 
@@ -87,6 +108,10 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/301`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('Cloudize HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toBeUndefined();
   });
 
@@ -94,6 +119,10 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/302`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('Cloudize HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toBeUndefined();
   });
 
@@ -101,6 +130,10 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/303`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('Cloudize HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toBeUndefined();
   });
 
@@ -108,6 +141,10 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/305`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('Cloudize HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toBeUndefined();
   });
 
@@ -115,6 +152,11 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/307`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('Cloudize HTTP Status Service');
+    expect(response.headers['content-type']).toBeDefined();
+    expect(isString(response.headers['content-type'])).toBe(true);
     expect(response.data).toBeUndefined();
   });
 
@@ -122,6 +164,10 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/308`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('Cloudize HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toBeUndefined();
   });
 });

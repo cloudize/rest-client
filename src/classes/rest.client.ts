@@ -1,7 +1,9 @@
 import axios, {
   AxiosError,
+  AxiosHeaders,
   AxiosRequestConfig,
-  AxiosResponse, Method,
+  AxiosResponse,
+  Method,
 } from 'axios';
 import { isDefined, isDefinedAndNotNull, isTrue } from '@cloudize/json';
 import {
@@ -52,7 +54,7 @@ export default class RestClient implements IRestClient {
           ThrowException({
             statusCode: error.response.status,
             statusText: error.response.statusText,
-            headers: error.response.headers,
+            headers: (error.response.headers as AxiosHeaders).toJSON() as any,
             data: error.response.data,
           });
           return undefined;
@@ -61,7 +63,7 @@ export default class RestClient implements IRestClient {
         return {
           statusCode: error.response.status,
           statusText: error.response.statusText,
-          headers: error.response.headers,
+          headers: (error.response.headers as AxiosHeaders).toJSON() as any,
           data: error.response.data === '' ? undefined : error.response.data,
         };
       }
@@ -76,7 +78,7 @@ export default class RestClient implements IRestClient {
     return {
       statusCode: axiosResponse.status,
       statusText: axiosResponse.statusText,
-      headers: axiosResponse.headers,
+      headers: (axiosResponse.headers as AxiosHeaders).toJSON() as any,
       data: axiosResponse.data === '' ? undefined : axiosResponse.data,
     };
   }
