@@ -1,3 +1,4 @@
+import { isEmpty, isString } from '@apigames/json';
 import {
   RestClient,
   Error301MovedPermanently,
@@ -52,6 +53,11 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/200`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toBeDefined();
+    expect(isString(response.headers['content-type'])).toBe(true);
     expect(response.data).toBeUndefined();
   });
 
@@ -59,6 +65,11 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/201`, { Accept: '*/*' });
     expect(response.statusCode).toBe(201);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toBeDefined();
+    expect(isString(response.headers['content-type'])).toBe(true);
     expect(response.data).toBeUndefined();
   });
 
@@ -66,6 +77,11 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/202`, { Accept: '*/*' });
     expect(response.statusCode).toBe(202);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toBeDefined();
+    expect(isString(response.headers['content-type'])).toBe(true);
     expect(response.data).toBeUndefined();
   });
 
@@ -73,6 +89,11 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/203`, { Accept: '*/*' });
     expect(response.statusCode).toBe(203);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toBeDefined();
+    expect(isString(response.headers['content-type'])).toBe(true);
     expect(response.data).toBeUndefined();
   });
 
@@ -80,6 +101,11 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/206`, { Accept: '*/*' });
     expect(response.statusCode).toBe(206);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toBeDefined();
+    expect(isString(response.headers['content-type'])).toBe(true);
     expect(response.data).toBeUndefined();
   });
 
@@ -87,42 +113,77 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/301`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toBeDefined();
+    expect(isString(response.headers['content-type'])).toBe(true);
   });
 
   it('302 status code supporting redirects', async () => {
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/302`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toBeDefined();
+    expect(isString(response.headers['content-type'])).toBe(true);
   });
 
   it('303 status code supporting redirects', async () => {
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/303`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toBeDefined();
+    expect(isString(response.headers['content-type'])).toBe(true);
   });
 
   it('305 status code supporting redirects', async () => {
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/305`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toBeDefined();
+    expect(isString(response.headers['content-type'])).toBe(true);
   });
 
   it('307 status code supporting redirects', async () => {
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/307`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toBeDefined();
+    expect(isString(response.headers['content-type'])).toBe(true);
   });
 
   it('308 status code supporting redirects', async () => {
     const restClient = new RestClient();
     const response = await restClient.Head(`${hostName}/308`, { Accept: '*/*' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toBeDefined();
+    expect(isString(response.headers['content-type'])).toBe(true);
   });
 
   it('400 status code (when the error mode is set to response)', async () => {
     const restClient = new RestClient(false);
     const response = await restClient.Head(`${hostName}/400`, { Accept: '*/*' });
     expect(response.statusCode).toBe(400);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toBeDefined();
+    expect(isString(response.headers['content-type'])).toBe(true);
   });
 });
 

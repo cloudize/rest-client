@@ -1,3 +1,4 @@
+import { isEmpty, isString } from '@apigames/json';
 import {
   RestClient,
   Error301MovedPermanently,
@@ -70,6 +71,10 @@ describe('Request should succeed when performing a PATCH on an endpoint that ret
     const restClient = new RestClient();
     const response = await restClient.Patch(`${hostName}/200`, payload, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(200));
   });
 
@@ -77,6 +82,10 @@ describe('Request should succeed when performing a PATCH on an endpoint that ret
     const restClient = new RestClient();
     const response = await restClient.Patch(`${hostName}/201`, payload, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(201);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(201));
   });
 
@@ -84,6 +93,10 @@ describe('Request should succeed when performing a PATCH on an endpoint that ret
     const restClient = new RestClient();
     const response = await restClient.Patch(`${hostName}/202`, payload, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(202);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(202));
   });
 
@@ -91,6 +104,10 @@ describe('Request should succeed when performing a PATCH on an endpoint that ret
     const restClient = new RestClient();
     const response = await restClient.Patch(`${hostName}/203`, payload, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(203);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(203));
   });
 
@@ -98,6 +115,10 @@ describe('Request should succeed when performing a PATCH on an endpoint that ret
     const restClient = new RestClient();
     const response = await restClient.Patch(`${hostName}/206`, payload, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(206);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(206));
   });
 
@@ -105,6 +126,10 @@ describe('Request should succeed when performing a PATCH on an endpoint that ret
     const restClient = new RestClient();
     const response = await restClient.Patch(`${hostName}/301`, payload, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(200));
   });
 
@@ -112,6 +137,10 @@ describe('Request should succeed when performing a PATCH on an endpoint that ret
     const restClient = new RestClient();
     const response = await restClient.Patch(`${hostName}/302`, payload, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(200));
   });
 
@@ -119,6 +148,10 @@ describe('Request should succeed when performing a PATCH on an endpoint that ret
     const restClient = new RestClient();
     const response = await restClient.Patch(`${hostName}/303`, payload, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(200));
   });
 
@@ -126,6 +159,10 @@ describe('Request should succeed when performing a PATCH on an endpoint that ret
     const restClient = new RestClient();
     const response = await restClient.Patch(`${hostName}/305`, payload, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(200));
   });
 
@@ -133,6 +170,10 @@ describe('Request should succeed when performing a PATCH on an endpoint that ret
     const restClient = new RestClient();
     const response = await restClient.Patch(`${hostName}/307`, payload, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(200));
   });
 
@@ -140,6 +181,10 @@ describe('Request should succeed when performing a PATCH on an endpoint that ret
     const restClient = new RestClient();
     const response = await restClient.Patch(`${hostName}/308`, payload, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(200));
   });
 });

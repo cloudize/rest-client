@@ -1,3 +1,4 @@
+import { isEmpty, isString } from '@apigames/json';
 import {
   RestClient,
   Error301MovedPermanently,
@@ -68,6 +69,10 @@ describe('Request should succeed when performing a GET on an endpoint that retur
     const restClient = new RestClient();
     const response = await restClient.Get(`${hostName}/200`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(200));
   });
 
@@ -75,6 +80,10 @@ describe('Request should succeed when performing a GET on an endpoint that retur
     const restClient = new RestClient();
     const response = await restClient.Get(`${hostName}/201`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(201);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(201));
   });
 
@@ -82,6 +91,10 @@ describe('Request should succeed when performing a GET on an endpoint that retur
     const restClient = new RestClient();
     const response = await restClient.Get(`${hostName}/202`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(202);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(202));
   });
 
@@ -89,6 +102,10 @@ describe('Request should succeed when performing a GET on an endpoint that retur
     const restClient = new RestClient();
     const response = await restClient.Get(`${hostName}/203`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(203);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(203));
   });
 
@@ -96,6 +113,10 @@ describe('Request should succeed when performing a GET on an endpoint that retur
     const restClient = new RestClient();
     const response = await restClient.Get(`${hostName}/206`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(206);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(206));
   });
 
@@ -103,6 +124,10 @@ describe('Request should succeed when performing a GET on an endpoint that retur
     const restClient = new RestClient();
     const response = await restClient.Get(`${hostName}/301`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(200));
   });
 
@@ -110,6 +135,10 @@ describe('Request should succeed when performing a GET on an endpoint that retur
     const restClient = new RestClient();
     const response = await restClient.Get(`${hostName}/302`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(200));
   });
 
@@ -117,6 +146,10 @@ describe('Request should succeed when performing a GET on an endpoint that retur
     const restClient = new RestClient();
     const response = await restClient.Get(`${hostName}/303`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(200));
   });
 
@@ -124,6 +157,10 @@ describe('Request should succeed when performing a GET on an endpoint that retur
     const restClient = new RestClient();
     const response = await restClient.Get(`${hostName}/305`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(200));
   });
 
@@ -131,6 +168,10 @@ describe('Request should succeed when performing a GET on an endpoint that retur
     const restClient = new RestClient();
     const response = await restClient.Get(`${hostName}/307`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(200));
   });
 
@@ -138,6 +179,10 @@ describe('Request should succeed when performing a GET on an endpoint that retur
     const restClient = new RestClient();
     const response = await restClient.Get(`${hostName}/308`, { Accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('API Games HTTP Status Service');
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(200));
   });
 });
