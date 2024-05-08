@@ -44,11 +44,12 @@ import {
   Error520WebServerIsReturningAnUnknownError,
   Error522ConnectionTimedOut,
   Error524ATimeoutOccurred,
+  NetworkConnectionException,
 } from '../../../../src';
 
 const hostName = 'http://127.0.0.1:3000';
 
-function ExpectedPayload(status: number): any {
+function ExpectedPayload(status: number | string): any {
   return {
     jsonapi: { version: '1.0' },
     data: {
@@ -59,7 +60,7 @@ function ExpectedPayload(status: number): any {
       },
     },
     links: {
-      self: `${hostName}/${status.toString()}`,
+      self: `${hostName}/${isString(status) ? status : status.toString()}`,
     },
   };
 }
@@ -74,6 +75,18 @@ describe('Request should succeed when performing a DELETE on an endpoint that re
     expect(response.headers.server).toBe('Cloudize HTTP Status Service');
     expect(response.headers['content-type']).toContain('application/vnd.api+json');
     expect(response.data).toEqual(ExpectedPayload(200));
+  });
+
+  it('200 status code from a slow endpoint when the timeout option allows', async () => {
+    const restClient = new RestClient();
+    const response = await restClient.Delete(`${hostName}/slow`, { Accept: 'application/vnd.api+json' }, { timeoutMs: 5000 });
+    expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('Cloudize HTTP Status Service');
+    expect(response.headers['content-type']).toBeDefined();
+    expect(response.headers['content-type']).toContain('application/vnd.api+json');
+    expect(response.data).toEqual(ExpectedPayload('slow'));
   });
 
   it('201 status code', async () => {
@@ -188,10 +201,21 @@ describe('Request should succeed when performing a DELETE on an endpoint that re
 });
 
 describe('Request should fail and throw when performing a DELETE on an endpoint that returns a', () => {
+  it('200 status code from a slow endpoint when the timeout is set to a low value', async () => {
+    try {
+      const restClient = new RestClient();
+      await restClient.Delete(`${hostName}/slow`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0, timeoutMs: 1000 });
+      throw new Error('The method did not throw as expected');
+    } catch (error) {
+      expect(error).toBeInstanceOf(NetworkConnectionException);
+    }
+  });
+
   it('299 status code', async () => {
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/299`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
     }
@@ -201,6 +225,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/301`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error301MovedPermanently);
       const errorCode = 301;
@@ -221,6 +246,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/302`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error302Found);
       const errorCode = 302;
@@ -241,6 +267,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/303`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error303SeeOther);
       const errorCode = 303;
@@ -261,6 +288,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/304`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error304NotModified);
       expect((error as Error304NotModified).status).toBe(304);
@@ -271,6 +299,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/305`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error305UseProxy);
       const errorCode = 305;
@@ -291,6 +320,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/306`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error306Unused);
       const errorCode = 306;
@@ -311,6 +341,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/307`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error307TemporaryRedirect);
       const errorCode = 307;
@@ -331,6 +362,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/308`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error308PermanentRedirect);
       const errorCode = 308;
@@ -351,6 +383,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/399`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
       expect((error as Error520WebServerIsReturningAnUnknownError).status).toBe(520);
@@ -362,6 +395,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/400`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error400BadRequest);
       const errorCode = 400;
@@ -382,6 +416,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/401`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error401Unauthorized);
       const errorCode = 401;
@@ -402,6 +437,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/402`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error402PaymentRequired);
       const errorCode = 402;
@@ -422,6 +458,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/403`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error403Forbidden);
       const errorCode = 403;
@@ -442,6 +479,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/404`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error404NotFound);
       const errorCode = 404;
@@ -462,6 +500,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/405`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error405MethodNotAllowed);
       const errorCode = 405;
@@ -482,6 +521,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/406`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error406NotAcceptable);
       const errorCode = 406;
@@ -502,6 +542,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/407`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error407ProxyAuthenticationRequired);
       const errorCode = 407;
@@ -522,6 +563,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/408`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error408RequestTimeout);
       const errorCode = 408;
@@ -542,6 +584,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/409`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error409Conflict);
       const errorCode = 409;
@@ -562,6 +605,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/410`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error410Gone);
       const errorCode = 410;
@@ -582,6 +626,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/411`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error411LengthRequired);
       const errorCode = 411;
@@ -602,6 +647,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/412`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error412PreconditionFailed);
       const errorCode = 412;
@@ -622,6 +668,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/413`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error413RequestEntityTooLarge);
       const errorCode = 413;
@@ -642,6 +689,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/414`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error414RequestURITooLong);
       const errorCode = 414;
@@ -662,6 +710,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/415`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error415UnsupportedMediaType);
       const errorCode = 415;
@@ -682,6 +731,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/416`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error416RequestedRangeNotSatisfiable);
       const errorCode = 416;
@@ -702,6 +752,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/417`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error417ExpectationFailed);
       const errorCode = 417;
@@ -722,6 +773,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/418`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error418ImaTeapot);
       const errorCode = 418;
@@ -742,6 +794,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/421`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error421MisdirectedRequest);
       const errorCode = 421;
@@ -762,6 +815,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/422`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error422UnprocessableEntity);
       const errorCode = 422;
@@ -782,6 +836,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/428`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error428PreconditionRequired);
       const errorCode = 428;
@@ -802,6 +857,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/429`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error429TooManyRequests);
       const errorCode = 429;
@@ -822,6 +878,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/431`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error431RequestHeaderFieldsTooLarge);
       const errorCode = 431;
@@ -842,6 +899,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/451`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error451UnavailableForLegalReasons);
       const errorCode = 451;
@@ -862,6 +920,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/499`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
       expect((error as Error520WebServerIsReturningAnUnknownError).status).toBe(520);
@@ -873,6 +932,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/500`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error500InternalServerError);
       const errorCode = 500;
@@ -893,6 +953,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/501`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error501NotImplemented);
       const errorCode = 501;
@@ -913,6 +974,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/502`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error502BadGateway);
       const errorCode = 502;
@@ -933,6 +995,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/503`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error503ServiceUnavailable);
       const errorCode = 503;
@@ -953,6 +1016,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/504`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error504GatewayTimeout);
       const errorCode = 504;
@@ -973,6 +1037,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/505`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error505HTTPVersionNotSupported);
       const errorCode = 505;
@@ -993,6 +1058,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/511`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error511NetworkAuthenticationRequired);
       const errorCode = 511;
@@ -1013,6 +1079,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/520`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
       const errorCode = 520;
@@ -1034,6 +1101,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/522`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error522ConnectionTimedOut);
       const errorCode = 522;
@@ -1054,6 +1122,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
     try {
       const restClient = new RestClient();
       await restClient.Delete(`${hostName}/524`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error524ATimeoutOccurred);
       const errorCode = 524;

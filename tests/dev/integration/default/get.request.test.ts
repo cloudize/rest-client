@@ -44,14 +44,29 @@ import {
   Error520WebServerIsReturningAnUnknownError,
   Error522ConnectionTimedOut,
   Error524ATimeoutOccurred,
+  NetworkConnectionException,
 } from '../../../../src';
 
 const hostName = 'http://127.0.0.1:3000';
+
+jest.setTimeout(75000);
 
 describe('Request should succeed when performing a GET on an endpoint that returns a', () => {
   it('200 status code', async () => {
     const restClient = new RestClient();
     const response = await restClient.Get(`${hostName}/200`, { Accept: '*/*' });
+    expect(response.statusCode).toBe(200);
+    expect(response.headers).toBeDefined();
+    expect(isEmpty(response.headers)).toBe(false);
+    expect(response.headers.server).toBe('Cloudize HTTP Status Service');
+    expect(response.headers['content-type']).toBeDefined();
+    expect(isString(response.headers['content-type'])).toBe(true);
+    expect(response.data).toBe('200 OK');
+  });
+
+  it('200 status code from a slow endpoint when the timeout option allows', async () => {
+    const restClient = new RestClient();
+    const response = await restClient.Get(`${hostName}/slow`, { Accept: '*/*' }, { timeoutMs: 5000 });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -188,10 +203,21 @@ describe('Request should succeed when performing a GET on an endpoint that retur
 });
 
 describe('Request should fail and throw when performing a GET on an endpoint that returns a', () => {
+  it('200 status code from a slow endpoint when the timeout is set to a low value', async () => {
+    try {
+      const restClient = new RestClient();
+      await restClient.Get(`${hostName}/slow`, { Accept: '*/*' }, { maxRedirects: 0, timeoutMs: 1000 });
+      throw new Error('The method did not throw as expected');
+    } catch (error) {
+      expect(error).toBeInstanceOf(NetworkConnectionException);
+    }
+  });
+
   it('299 status code', async () => {
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/299`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
     }
@@ -201,6 +227,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/301`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error301MovedPermanently);
       expect((error as Error301MovedPermanently).status).toBe(301);
@@ -211,6 +238,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/302`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error302Found);
       expect((error as Error302Found).status).toBe(302);
@@ -221,6 +249,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/303`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error303SeeOther);
       expect((error as Error303SeeOther).status).toBe(303);
@@ -231,6 +260,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/304`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error304NotModified);
       expect((error as Error304NotModified).status).toBe(304);
@@ -241,6 +271,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/305`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error305UseProxy);
       expect((error as Error305UseProxy).status).toBe(305);
@@ -251,6 +282,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/306`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error306Unused);
       expect((error as Error306Unused).status).toBe(306);
@@ -261,6 +293,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/307`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error307TemporaryRedirect);
       expect((error as Error307TemporaryRedirect).status).toBe(307);
@@ -271,6 +304,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/308`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error308PermanentRedirect);
       expect((error as Error308PermanentRedirect).status).toBe(308);
@@ -281,6 +315,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/399`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
     }
@@ -290,6 +325,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/400`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error400BadRequest);
       expect((error as Error400BadRequest).status).toBe(400);
@@ -300,6 +336,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/401`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error401Unauthorized);
       expect((error as Error401Unauthorized).status).toBe(401);
@@ -310,6 +347,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/402`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error402PaymentRequired);
       expect((error as Error402PaymentRequired).status).toBe(402);
@@ -320,6 +358,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/403`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error403Forbidden);
       expect((error as Error403Forbidden).status).toBe(403);
@@ -330,6 +369,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/404`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error404NotFound);
       expect((error as Error404NotFound).status).toBe(404);
@@ -340,6 +380,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/405`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error405MethodNotAllowed);
       expect((error as Error405MethodNotAllowed).status).toBe(405);
@@ -350,6 +391,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/406`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error406NotAcceptable);
       expect((error as Error406NotAcceptable).status).toBe(406);
@@ -360,6 +402,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/407`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error407ProxyAuthenticationRequired);
       expect((error as Error407ProxyAuthenticationRequired).status).toBe(407);
@@ -370,6 +413,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/408`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error408RequestTimeout);
       expect((error as Error408RequestTimeout).status).toBe(408);
@@ -380,6 +424,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/409`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error409Conflict);
       expect((error as Error409Conflict).status).toBe(409);
@@ -390,6 +435,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/410`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error410Gone);
       expect((error as Error410Gone).status).toBe(410);
@@ -400,6 +446,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/411`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error411LengthRequired);
       expect((error as Error411LengthRequired).status).toBe(411);
@@ -410,6 +457,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/412`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error412PreconditionFailed);
       expect((error as Error412PreconditionFailed).status).toBe(412);
@@ -420,6 +468,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/413`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error413RequestEntityTooLarge);
       expect((error as Error413RequestEntityTooLarge).status).toBe(413);
@@ -430,6 +479,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/414`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error414RequestURITooLong);
       expect((error as Error414RequestURITooLong).status).toBe(414);
@@ -440,6 +490,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/415`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error415UnsupportedMediaType);
       expect((error as Error415UnsupportedMediaType).status).toBe(415);
@@ -450,6 +501,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/416`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error416RequestedRangeNotSatisfiable);
       expect((error as Error416RequestedRangeNotSatisfiable).status).toBe(416);
@@ -460,6 +512,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/417`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error417ExpectationFailed);
       expect((error as Error417ExpectationFailed).status).toBe(417);
@@ -470,6 +523,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/418`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error418ImaTeapot);
       expect((error as Error418ImaTeapot).status).toBe(418);
@@ -480,6 +534,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/421`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error421MisdirectedRequest);
       expect((error as Error421MisdirectedRequest).status).toBe(421);
@@ -490,6 +545,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/422`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error422UnprocessableEntity);
       expect((error as Error422UnprocessableEntity).status).toBe(422);
@@ -500,6 +556,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/428`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error428PreconditionRequired);
       expect((error as Error428PreconditionRequired).status).toBe(428);
@@ -510,6 +567,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/429`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error429TooManyRequests);
       expect((error as Error429TooManyRequests).status).toBe(429);
@@ -520,6 +578,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/431`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error431RequestHeaderFieldsTooLarge);
       expect((error as Error431RequestHeaderFieldsTooLarge).status).toBe(431);
@@ -530,6 +589,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/451`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error451UnavailableForLegalReasons);
       expect((error as Error451UnavailableForLegalReasons).status).toBe(451);
@@ -540,6 +600,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/499`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
     }
@@ -549,6 +610,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/500`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error500InternalServerError);
       expect((error as Error500InternalServerError).status).toBe(500);
@@ -559,6 +621,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/501`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error501NotImplemented);
       expect((error as Error501NotImplemented).status).toBe(501);
@@ -569,6 +632,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/502`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error502BadGateway);
       expect((error as Error502BadGateway).status).toBe(502);
@@ -579,6 +643,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/503`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error503ServiceUnavailable);
       expect((error as Error503ServiceUnavailable).status).toBe(503);
@@ -589,6 +654,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/504`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error504GatewayTimeout);
       expect((error as Error504GatewayTimeout).status).toBe(504);
@@ -599,6 +665,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/505`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error505HTTPVersionNotSupported);
       expect((error as Error505HTTPVersionNotSupported).status).toBe(505);
@@ -609,6 +676,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/511`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error511NetworkAuthenticationRequired);
       expect((error as Error511NetworkAuthenticationRequired).status).toBe(511);
@@ -619,6 +687,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/520`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
       expect((error as Error520WebServerIsReturningAnUnknownError).status).toBe(520);
@@ -629,6 +698,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/522`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error522ConnectionTimedOut);
       expect((error as Error522ConnectionTimedOut).status).toBe(522);
@@ -639,6 +709,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
     try {
       const restClient = new RestClient();
       await restClient.Get(`${hostName}/524`, { Accept: '*/*' }, { maxRedirects: 0 });
+      throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error524ATimeoutOccurred);
       expect((error as Error524ATimeoutOccurred).status).toBe(524);

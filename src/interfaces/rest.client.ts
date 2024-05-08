@@ -1,6 +1,7 @@
 export type RestClientOptions = {
   queryParams?: any;
   maxRedirects?: number;
+  timeoutMs?: number;
 }
 
 export type RestClientResponseHeaders = {
