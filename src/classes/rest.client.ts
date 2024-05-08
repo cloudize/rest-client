@@ -42,6 +42,7 @@ export default class RestClient implements IRestClient {
     if (isDefined(options)) {
       if (isDefined(options.queryParams)) config.params = options.queryParams;
       if (isDefined(options.maxRedirects)) config.maxRedirects = options.maxRedirects;
+      if (isDefined(options.timeoutMs)) config.timeout = options.timeoutMs;
     }
 
     return config;
