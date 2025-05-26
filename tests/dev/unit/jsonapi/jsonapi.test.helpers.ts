@@ -2,7 +2,7 @@ import { RestClientResponseHeaders } from '../../../../src/interfaces/rest.clien
 
 export function GetJsonAPIHeaders(): RestClientResponseHeaders {
   return {
-    'Content-Type': 'application/vnd.api+json',
+    'content-type': 'application/vnd.api+json',
   };
 }
 
