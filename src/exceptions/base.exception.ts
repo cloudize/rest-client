@@ -58,7 +58,7 @@ export default class RestClientBaseException extends Error {
       && hasProperty(this._response.data.jsonapi, 'version') && isString(this._response.data.jsonapi.version);
   }
 
-  get data(): RestClientExceptionData {
+  get data(): any {
     return this._response.data;
   }
 
