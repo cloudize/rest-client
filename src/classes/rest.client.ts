@@ -1,11 +1,14 @@
+/* eslint-disable import/no-cycle */
 import axios, {
   AxiosError,
-  AxiosHeaders,
   AxiosRequestConfig,
   AxiosResponse,
   Method,
+  RawAxiosResponseHeaders,
 } from 'axios';
-import { isDefined, isDefinedAndNotNull, isTrue } from '@cloudize/json';
+import {
+  hasProperty, isDefined, isDefinedAndNotNull, isTrue,
+} from '@cloudize/json';
 import {
   IRestClient,
   RestClientOptions,
@@ -48,6 +51,20 @@ export default class RestClient implements IRestClient {
     return config;
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  private serializeHeaders(headers: RawAxiosResponseHeaders): any {
+    const result: any = {};
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const key in headers) {
+      if (hasProperty(headers, key)) {
+        result[key.toLowerCase()] = headers[key];
+      }
+    }
+
+    return result;
+  }
+
   private ProcessError(uri: string, error: any): RestClientResponse {
     if (this.IsAxiosError(error)) {
       if (isDefinedAndNotNull(error.response)) {
@@ -55,7 +72,7 @@ export default class RestClient implements IRestClient {
           ThrowException({
             statusCode: error.response.status,
             statusText: error.response.statusText,
-            headers: (error.response.headers as AxiosHeaders).toJSON() as any,
+            headers: this.serializeHeaders(error.response.headers),
             data: error.response.data,
           });
           return undefined;
@@ -64,7 +81,7 @@ export default class RestClient implements IRestClient {
         return {
           statusCode: error.response.status,
           statusText: error.response.statusText,
-          headers: (error.response.headers as AxiosHeaders).toJSON() as any,
+          headers: this.serializeHeaders(error.response.headers),
           data: error.response.data === '' ? undefined : error.response.data,
         };
       }
@@ -79,7 +96,7 @@ export default class RestClient implements IRestClient {
     return {
       statusCode: axiosResponse.status,
       statusText: axiosResponse.statusText,
-      headers: (axiosResponse.headers as AxiosHeaders).toJSON() as any,
+      headers: this.serializeHeaders(axiosResponse.headers),
       data: axiosResponse.data === '' ? undefined : axiosResponse.data,
     };
   }

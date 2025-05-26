@@ -1,5 +1,5 @@
 import {
-  hasProperty, isArrayOfObjects, isDefined, isString,
+  hasProperty, isArrayOfObjects, isDefined, isDefinedAndNotNull, isObject, isString, isTrue,
 } from '@cloudize/json';
 import JsonAPIError from './jsonapi.error';
 
@@ -19,19 +19,18 @@ export default class RestClientBaseException extends Error {
     super(`${response.statusCode.toString()} ${response.statusText}`);
     this.name = 'RestClientBaseException';
     this._response = response;
-    if (RestClientBaseException.HasJsonAPIErrors(response)) this.LoadJsonAPIErrors(response);
+    if (this.HasJsonAPIErrors()) this.LoadJsonAPIErrors();
   }
 
-  private static HasJsonAPIErrors(response: RestClientExceptionData): boolean {
-    return (isDefined(response.data)
-        && hasProperty(response.data, 'errors')
-        && isArrayOfObjects(response.data.errors)
+  private HasJsonAPIErrors(): boolean {
+    return isTrue(this.isJsonAPIError()) && (isDefined(this._response.data)
+        && hasProperty(this._response.data, 'errors') && isArrayOfObjects(this._response.data.errors)
     );
   }
 
-  private LoadJsonAPIErrors(response: RestClientExceptionData) {
+  private LoadJsonAPIErrors() {
     // eslint-disable-next-line no-restricted-syntax
-    for (const error of response.data.errors) {
+    for (const error of this._response.data.errors) {
       if (hasProperty(error, 'code') && isString(error.code)
           && hasProperty(error, 'title') && isString(error.title)
           && hasProperty(error, 'status') && isString(error.status)) {
@@ -44,6 +43,19 @@ export default class RestClientBaseException extends Error {
         this._errors.push(new JsonAPIError(error.code, error.title, parseInt(error.status, 10), detail, source));
       }
     }
+  }
+
+  private hasJsonAPIContentType(): boolean {
+    return !!(isDefinedAndNotNull(this._response.headers)
+      && hasProperty(this._response.headers, 'content-type')
+      && isString(this._response.headers['content-type'])
+      && (this._response.headers['content-type'].includes('application/vnd.api+json')));
+  }
+
+  isJsonAPIError(): boolean {
+    return isTrue(this.hasJsonAPIContentType()) && isDefinedAndNotNull(this._response.data)
+      && hasProperty(this._response.data, 'jsonapi') && isObject(this._response.data.jsonapi)
+      && hasProperty(this._response.data.jsonapi, 'version') && isString(this._response.data.jsonapi.version);
   }
 
   get data(): RestClientExceptionData {
