@@ -188,6 +188,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error301MovedPermanently).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error301MovedPermanently).errors[0].status).toBe(errorCode);
+      expect((error as Error301MovedPermanently).data).toEqual(GetJsonAPIErrorsPayload(301, [301]));
     }
   });
 
@@ -209,6 +210,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error302Found).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error302Found).errors[0].status).toBe(errorCode);
+      expect((error as Error302Found).data).toEqual(GetJsonAPIErrorsPayload(302, [302]));
     }
   });
 
@@ -230,6 +232,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error303SeeOther).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error303SeeOther).errors[0].status).toBe(errorCode);
+      expect((error as Error303SeeOther).data).toEqual(GetJsonAPIErrorsPayload(303, [303]));
     }
   });
 
@@ -251,6 +254,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error304NotModified).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error304NotModified).errors[0].status).toBe(errorCode);
+      expect((error as Error304NotModified).data).toEqual(GetJsonAPIErrorsPayload(304, [304]));
     }
   });
 
@@ -272,6 +276,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error305UseProxy).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error305UseProxy).errors[0].status).toBe(errorCode);
+      expect((error as Error305UseProxy).data).toEqual(GetJsonAPIErrorsPayload(305, [305]));
     }
   });
 
@@ -293,6 +298,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error306Unused).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error306Unused).errors[0].status).toBe(errorCode);
+      expect((error as Error306Unused).data).toEqual(GetJsonAPIErrorsPayload(306, [306]));
     }
   });
 
@@ -314,6 +320,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error307TemporaryRedirect).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error307TemporaryRedirect).errors[0].status).toBe(errorCode);
+      expect((error as Error307TemporaryRedirect).data).toEqual(GetJsonAPIErrorsPayload(307, [307]));
     }
   });
 
@@ -335,6 +342,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error308PermanentRedirect).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error308PermanentRedirect).errors[0].status).toBe(errorCode);
+      expect((error as Error308PermanentRedirect).data).toEqual(GetJsonAPIErrorsPayload(308, [308]));
     }
   });
 
@@ -356,6 +364,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error520WebServerIsReturningAnUnknownError).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error520WebServerIsReturningAnUnknownError).errors[0].status).toBe(errorCode);
+      expect((error as Error520WebServerIsReturningAnUnknownError).data).toEqual(GetJsonAPIErrorsPayload(399, [399]));
     }
   });
 
@@ -377,6 +386,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error400BadRequest).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error400BadRequest).errors[0].status).toBe(errorCode);
+      expect((error as Error400BadRequest).data).toEqual(GetJsonAPIErrorsPayload(400, [400]));
     }
   });
 
@@ -398,6 +408,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error401Unauthorized).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error401Unauthorized).errors[0].status).toBe(errorCode);
+      expect((error as Error401Unauthorized).data).toEqual(GetJsonAPIErrorsPayload(401, [401]));
     }
   });
 
@@ -419,6 +430,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error402PaymentRequired).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error402PaymentRequired).errors[0].status).toBe(errorCode);
+      expect((error as Error402PaymentRequired).data).toEqual(GetJsonAPIErrorsPayload(402, [402]));
     }
   });
 
@@ -440,6 +452,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error403Forbidden).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error403Forbidden).errors[0].status).toBe(errorCode);
+      expect((error as Error403Forbidden).data).toEqual(GetJsonAPIErrorsPayload(403, [403]));
     }
   });
 
@@ -461,6 +474,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error404NotFound).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error404NotFound).errors[0].status).toBe(errorCode);
+      expect((error as Error404NotFound).data).toEqual(GetJsonAPIErrorsPayload(404, [404]));
     }
   });
 
@@ -482,6 +496,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error405MethodNotAllowed).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error405MethodNotAllowed).errors[0].status).toBe(errorCode);
+      expect((error as Error405MethodNotAllowed).data).toEqual(GetJsonAPIErrorsPayload(405, [405]));
     }
   });
 
@@ -503,6 +518,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error406NotAcceptable).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error406NotAcceptable).errors[0].status).toBe(errorCode);
+      expect((error as Error406NotAcceptable).data).toEqual(GetJsonAPIErrorsPayload(406, [406]));
     }
   });
 
@@ -524,6 +540,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error407ProxyAuthenticationRequired).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error407ProxyAuthenticationRequired).errors[0].status).toBe(errorCode);
+      expect((error as Error407ProxyAuthenticationRequired).data).toEqual(GetJsonAPIErrorsPayload(407, [407]));
     }
   });
 
@@ -545,6 +562,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error408RequestTimeout).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error408RequestTimeout).errors[0].status).toBe(errorCode);
+      expect((error as Error408RequestTimeout).data).toEqual(GetJsonAPIErrorsPayload(408, [408]));
     }
   });
 
@@ -566,6 +584,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error409Conflict).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error409Conflict).errors[0].status).toBe(errorCode);
+      expect((error as Error409Conflict).data).toEqual(GetJsonAPIErrorsPayload(409, [409]));
     }
   });
 
@@ -587,6 +606,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error410Gone).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error410Gone).errors[0].status).toBe(errorCode);
+      expect((error as Error410Gone).data).toEqual(GetJsonAPIErrorsPayload(410, [410]));
     }
   });
 
@@ -608,6 +628,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error411LengthRequired).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error411LengthRequired).errors[0].status).toBe(errorCode);
+      expect((error as Error411LengthRequired).data).toEqual(GetJsonAPIErrorsPayload(411, [411]));
     }
   });
 
@@ -629,6 +650,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error412PreconditionFailed).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error412PreconditionFailed).errors[0].status).toBe(errorCode);
+      expect((error as Error412PreconditionFailed).data).toEqual(GetJsonAPIErrorsPayload(412, [412]));
     }
   });
 
@@ -650,6 +672,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error413RequestEntityTooLarge).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error413RequestEntityTooLarge).errors[0].status).toBe(errorCode);
+      expect((error as Error413RequestEntityTooLarge).data).toEqual(GetJsonAPIErrorsPayload(413, [413]));
     }
   });
 
@@ -671,6 +694,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error414RequestURITooLong).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error414RequestURITooLong).errors[0].status).toBe(errorCode);
+      expect((error as Error414RequestURITooLong).data).toEqual(GetJsonAPIErrorsPayload(414, [414]));
     }
   });
 
@@ -692,6 +716,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error415UnsupportedMediaType).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error415UnsupportedMediaType).errors[0].status).toBe(errorCode);
+      expect((error as Error415UnsupportedMediaType).data).toEqual(GetJsonAPIErrorsPayload(415, [415]));
     }
   });
 
@@ -713,6 +738,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error416RequestedRangeNotSatisfiable).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error416RequestedRangeNotSatisfiable).errors[0].status).toBe(errorCode);
+      expect((error as Error416RequestedRangeNotSatisfiable).data).toEqual(GetJsonAPIErrorsPayload(416, [416]));
     }
   });
 
@@ -734,6 +760,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error417ExpectationFailed).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error417ExpectationFailed).errors[0].status).toBe(errorCode);
+      expect((error as Error417ExpectationFailed).data).toEqual(GetJsonAPIErrorsPayload(417, [417]));
     }
   });
 
@@ -755,6 +782,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error418ImaTeapot).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error418ImaTeapot).errors[0].status).toBe(errorCode);
+      expect((error as Error418ImaTeapot).data).toEqual(GetJsonAPIErrorsPayload(418, [418]));
     }
   });
 
@@ -776,6 +804,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error421MisdirectedRequest).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error421MisdirectedRequest).errors[0].status).toBe(errorCode);
+      expect((error as Error421MisdirectedRequest).data).toEqual(GetJsonAPIErrorsPayload(421, [421]));
     }
   });
 
@@ -797,6 +826,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error422UnprocessableEntity).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error422UnprocessableEntity).errors[0].status).toBe(errorCode);
+      expect((error as Error422UnprocessableEntity).data).toEqual(GetJsonAPIErrorsPayload(422, [422]));
     }
   });
 
@@ -818,6 +848,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error428PreconditionRequired).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error428PreconditionRequired).errors[0].status).toBe(errorCode);
+      expect((error as Error428PreconditionRequired).data).toEqual(GetJsonAPIErrorsPayload(428, [428]));
     }
   });
 
@@ -839,6 +870,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error429TooManyRequests).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error429TooManyRequests).errors[0].status).toBe(errorCode);
+      expect((error as Error429TooManyRequests).data).toEqual(GetJsonAPIErrorsPayload(429, [429]));
     }
   });
 
@@ -860,6 +892,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error431RequestHeaderFieldsTooLarge).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error431RequestHeaderFieldsTooLarge).errors[0].status).toBe(errorCode);
+      expect((error as Error431RequestHeaderFieldsTooLarge).data).toEqual(GetJsonAPIErrorsPayload(431, [431]));
     }
   });
 
@@ -881,6 +914,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error451UnavailableForLegalReasons).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error451UnavailableForLegalReasons).errors[0].status).toBe(errorCode);
+      expect((error as Error451UnavailableForLegalReasons).data).toEqual(GetJsonAPIErrorsPayload(451, [451]));
     }
   });
 
@@ -902,6 +936,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error520WebServerIsReturningAnUnknownError).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error520WebServerIsReturningAnUnknownError).errors[0].status).toBe(errorCode);
+      expect((error as Error520WebServerIsReturningAnUnknownError).data).toEqual(GetJsonAPIErrorsPayload(499, [499]));
     }
   });
 
@@ -923,6 +958,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error500InternalServerError).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error500InternalServerError).errors[0].status).toBe(errorCode);
+      expect((error as Error500InternalServerError).data).toEqual(GetJsonAPIErrorsPayload(500, [500]));
     }
   });
 
@@ -944,6 +980,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error501NotImplemented).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error501NotImplemented).errors[0].status).toBe(errorCode);
+      expect((error as Error501NotImplemented).data).toEqual(GetJsonAPIErrorsPayload(501, [501]));
     }
   });
 
@@ -965,6 +1002,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error502BadGateway).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error502BadGateway).errors[0].status).toBe(errorCode);
+      expect((error as Error502BadGateway).data).toEqual(GetJsonAPIErrorsPayload(502, [502]));
     }
   });
 
@@ -986,6 +1024,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error503ServiceUnavailable).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error503ServiceUnavailable).errors[0].status).toBe(errorCode);
+      expect((error as Error503ServiceUnavailable).data).toEqual(GetJsonAPIErrorsPayload(503, [503]));
     }
   });
 
@@ -1007,6 +1046,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error504GatewayTimeout).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error504GatewayTimeout).errors[0].status).toBe(errorCode);
+      expect((error as Error504GatewayTimeout).data).toEqual(GetJsonAPIErrorsPayload(504, [504]));
     }
   });
 
@@ -1028,6 +1068,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error505HTTPVersionNotSupported).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error505HTTPVersionNotSupported).errors[0].status).toBe(errorCode);
+      expect((error as Error505HTTPVersionNotSupported).data).toEqual(GetJsonAPIErrorsPayload(505, [505]));
     }
   });
 
@@ -1049,6 +1090,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error511NetworkAuthenticationRequired).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error511NetworkAuthenticationRequired).errors[0].status).toBe(errorCode);
+      expect((error as Error511NetworkAuthenticationRequired).data).toEqual(GetJsonAPIErrorsPayload(511, [511]));
     }
   });
 
@@ -1070,6 +1112,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error520WebServerIsReturningAnUnknownError).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error520WebServerIsReturningAnUnknownError).errors[0].status).toBe(errorCode);
+      expect((error as Error520WebServerIsReturningAnUnknownError).data).toEqual(GetJsonAPIErrorsPayload(520, [520]));
     }
   });
 
@@ -1091,6 +1134,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error522ConnectionTimedOut).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error522ConnectionTimedOut).errors[0].status).toBe(errorCode);
+      expect((error as Error522ConnectionTimedOut).data).toEqual(GetJsonAPIErrorsPayload(522, [522]));
     }
   });
 
@@ -1112,6 +1156,7 @@ describe('Request should fail and throw when performing a PATCH on an endpoint t
       expect((error as Error524ATimeoutOccurred).errors[0].title)
         .toBe(`This is the detail of the ${errorCode.toString(10)} error.`);
       expect((error as Error524ATimeoutOccurred).errors[0].status).toBe(errorCode);
+      expect((error as Error524ATimeoutOccurred).data).toEqual(GetJsonAPIErrorsPayload(524, [524]));
     }
   });
 });

@@ -46,6 +46,10 @@ export default class RestClientBaseException extends Error {
     }
   }
 
+  get data(): RestClientExceptionData {
+    return this._response.data;
+  }
+
   get errorCount(): number {
     return this._errors.length;
   }
