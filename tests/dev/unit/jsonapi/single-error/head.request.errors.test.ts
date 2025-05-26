@@ -45,7 +45,7 @@ import {
   Error522ConnectionTimedOut,
   Error524ATimeoutOccurred,
 } from '../../../../../src';
-import { GetJsonAPIHeaders } from '../jsonapi.test.helpers';
+import {GetJsonAPIErrorsPayload, GetJsonAPIHeaders} from '../jsonapi.test.helpers';
 
 describe('Request should succeed when performing a HEAD on an endpoint that returns a', () => {
   it('200 status code', async () => {
@@ -181,6 +181,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error301MovedPermanently);
       expect((error as Error301MovedPermanently).status).toBe(301);
       expect((error as Error301MovedPermanently).errorCount).toBe(0);
+      expect((error as Error301MovedPermanently).data).toBeNull();
     }
   });
 
@@ -197,6 +198,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error302Found);
       expect((error as Error302Found).status).toBe(302);
       expect((error as Error302Found).errorCount).toBe(0);
+      expect((error as Error302Found).data).toBeNull();
     }
   });
 
@@ -213,6 +215,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error303SeeOther);
       expect((error as Error303SeeOther).status).toBe(303);
       expect((error as Error303SeeOther).errorCount).toBe(0);
+      expect((error as Error303SeeOther).data).toBeNull();
     }
   });
 
@@ -229,6 +232,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error304NotModified);
       expect((error as Error304NotModified).status).toBe(304);
       expect((error as Error304NotModified).errorCount).toBe(0);
+      expect((error as Error304NotModified).data).toBeNull();
     }
   });
 
@@ -245,6 +249,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error305UseProxy);
       expect((error as Error305UseProxy).status).toBe(305);
       expect((error as Error305UseProxy).errorCount).toBe(0);
+      expect((error as Error305UseProxy).data).toBeNull();
     }
   });
 
@@ -261,6 +266,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error306Unused);
       expect((error as Error306Unused).status).toBe(306);
       expect((error as Error306Unused).errorCount).toBe(0);
+      expect((error as Error306Unused).data).toBeNull();
     }
   });
 
@@ -277,6 +283,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error307TemporaryRedirect);
       expect((error as Error307TemporaryRedirect).status).toBe(307);
       expect((error as Error307TemporaryRedirect).errorCount).toBe(0);
+      expect((error as Error307TemporaryRedirect).data).toBeNull();
     }
   });
 
@@ -293,6 +300,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error308PermanentRedirect);
       expect((error as Error308PermanentRedirect).status).toBe(308);
       expect((error as Error308PermanentRedirect).errorCount).toBe(0);
+      expect((error as Error308PermanentRedirect).data).toBeNull();
     }
   });
 
@@ -309,6 +317,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
       expect((error as Error520WebServerIsReturningAnUnknownError).status).toBe(399);
       expect((error as Error520WebServerIsReturningAnUnknownError).errorCount).toBe(0);
+      expect((error as Error520WebServerIsReturningAnUnknownError).data).toBeNull();
     }
   });
 
@@ -325,6 +334,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error400BadRequest);
       expect((error as Error400BadRequest).status).toBe(400);
       expect((error as Error400BadRequest).errorCount).toBe(0);
+      expect((error as Error400BadRequest).data).toBeNull();
     }
   });
 
@@ -341,6 +351,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error401Unauthorized);
       expect((error as Error401Unauthorized).status).toBe(401);
       expect((error as Error401Unauthorized).errorCount).toBe(0);
+      expect((error as Error401Unauthorized).data).toBeNull();
     }
   });
 
@@ -357,6 +368,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error402PaymentRequired);
       expect((error as Error402PaymentRequired).status).toBe(402);
       expect((error as Error402PaymentRequired).errorCount).toBe(0);
+      expect((error as Error402PaymentRequired).data).toBeNull();
     }
   });
 
@@ -373,6 +385,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error403Forbidden);
       expect((error as Error403Forbidden).status).toBe(403);
       expect((error as Error403Forbidden).errorCount).toBe(0);
+      expect((error as Error403Forbidden).data).toBeNull();
     }
   });
 
@@ -389,6 +402,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error404NotFound);
       expect((error as Error404NotFound).status).toBe(404);
       expect((error as Error404NotFound).errorCount).toBe(0);
+      expect((error as Error404NotFound).data).toBeNull();
     }
   });
 
@@ -405,6 +419,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error405MethodNotAllowed);
       expect((error as Error405MethodNotAllowed).status).toBe(405);
       expect((error as Error405MethodNotAllowed).errorCount).toBe(0);
+      expect((error as Error405MethodNotAllowed).data).toBeNull();
     }
   });
 
@@ -421,6 +436,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error406NotAcceptable);
       expect((error as Error406NotAcceptable).status).toBe(406);
       expect((error as Error406NotAcceptable).errorCount).toBe(0);
+      expect((error as Error406NotAcceptable).data).toBeNull();
     }
   });
 
@@ -437,6 +453,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error407ProxyAuthenticationRequired);
       expect((error as Error407ProxyAuthenticationRequired).status).toBe(407);
       expect((error as Error407ProxyAuthenticationRequired).errorCount).toBe(0);
+      expect((error as Error407ProxyAuthenticationRequired).data).toBeNull();
     }
   });
 
@@ -453,6 +470,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error408RequestTimeout);
       expect((error as Error408RequestTimeout).status).toBe(408);
       expect((error as Error408RequestTimeout).errorCount).toBe(0);
+      expect((error as Error408RequestTimeout).data).toBeNull();
     }
   });
 
@@ -469,6 +487,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error409Conflict);
       expect((error as Error409Conflict).status).toBe(409);
       expect((error as Error409Conflict).errorCount).toBe(0);
+      expect((error as Error409Conflict).data).toBeNull();
     }
   });
 
@@ -485,6 +504,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error410Gone);
       expect((error as Error410Gone).status).toBe(410);
       expect((error as Error410Gone).errorCount).toBe(0);
+      expect((error as Error410Gone).data).toBeNull();
     }
   });
 
@@ -501,6 +521,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error411LengthRequired);
       expect((error as Error411LengthRequired).status).toBe(411);
       expect((error as Error411LengthRequired).errorCount).toBe(0);
+      expect((error as Error411LengthRequired).data).toBeNull();
     }
   });
 
@@ -517,6 +538,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error412PreconditionFailed);
       expect((error as Error412PreconditionFailed).status).toBe(412);
       expect((error as Error412PreconditionFailed).errorCount).toBe(0);
+      expect((error as Error412PreconditionFailed).data).toBeNull();
     }
   });
 
@@ -533,6 +555,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error413RequestEntityTooLarge);
       expect((error as Error413RequestEntityTooLarge).status).toBe(413);
       expect((error as Error413RequestEntityTooLarge).errorCount).toBe(0);
+      expect((error as Error413RequestEntityTooLarge).data).toBeNull();
     }
   });
 
@@ -549,6 +572,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error414RequestURITooLong);
       expect((error as Error414RequestURITooLong).status).toBe(414);
       expect((error as Error414RequestURITooLong).errorCount).toBe(0);
+      expect((error as Error414RequestURITooLong).data).toBeNull();
     }
   });
 
@@ -565,6 +589,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error415UnsupportedMediaType);
       expect((error as Error415UnsupportedMediaType).status).toBe(415);
       expect((error as Error415UnsupportedMediaType).errorCount).toBe(0);
+      expect((error as Error415UnsupportedMediaType).data).toBeNull();
     }
   });
 
@@ -581,6 +606,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error416RequestedRangeNotSatisfiable);
       expect((error as Error416RequestedRangeNotSatisfiable).status).toBe(416);
       expect((error as Error416RequestedRangeNotSatisfiable).errorCount).toBe(0);
+      expect((error as Error416RequestedRangeNotSatisfiable).data).toBeNull();
     }
   });
 
@@ -597,6 +623,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error417ExpectationFailed);
       expect((error as Error417ExpectationFailed).status).toBe(417);
       expect((error as Error417ExpectationFailed).errorCount).toBe(0);
+      expect((error as Error417ExpectationFailed).data).toBeNull();
     }
   });
 
@@ -613,6 +640,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error418ImaTeapot);
       expect((error as Error418ImaTeapot).status).toBe(418);
       expect((error as Error418ImaTeapot).errorCount).toBe(0);
+      expect((error as Error418ImaTeapot).data).toBeNull();
     }
   });
 
@@ -629,6 +657,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error421MisdirectedRequest);
       expect((error as Error421MisdirectedRequest).status).toBe(421);
       expect((error as Error421MisdirectedRequest).errorCount).toBe(0);
+      expect((error as Error421MisdirectedRequest).data).toBeNull();
     }
   });
 
@@ -645,6 +674,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error422UnprocessableEntity);
       expect((error as Error422UnprocessableEntity).status).toBe(422);
       expect((error as Error422UnprocessableEntity).errorCount).toBe(0);
+      expect((error as Error422UnprocessableEntity).data).toBeNull();
     }
   });
 
@@ -661,6 +691,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error428PreconditionRequired);
       expect((error as Error428PreconditionRequired).status).toBe(428);
       expect((error as Error428PreconditionRequired).errorCount).toBe(0);
+      expect((error as Error428PreconditionRequired).data).toBeNull();
     }
   });
 
@@ -677,6 +708,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error429TooManyRequests);
       expect((error as Error429TooManyRequests).status).toBe(429);
       expect((error as Error429TooManyRequests).errorCount).toBe(0);
+      expect((error as Error429TooManyRequests).data).toBeNull();
     }
   });
 
@@ -693,6 +725,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error431RequestHeaderFieldsTooLarge);
       expect((error as Error431RequestHeaderFieldsTooLarge).status).toBe(431);
       expect((error as Error431RequestHeaderFieldsTooLarge).errorCount).toBe(0);
+      expect((error as Error431RequestHeaderFieldsTooLarge).data).toBeNull();
     }
   });
 
@@ -709,6 +742,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error451UnavailableForLegalReasons);
       expect((error as Error451UnavailableForLegalReasons).status).toBe(451);
       expect((error as Error451UnavailableForLegalReasons).errorCount).toBe(0);
+      expect((error as Error451UnavailableForLegalReasons).data).toBeNull();
     }
   });
 
@@ -725,6 +759,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
       expect((error as Error520WebServerIsReturningAnUnknownError).status).toBe(499);
       expect((error as Error520WebServerIsReturningAnUnknownError).errorCount).toBe(0);
+      expect((error as Error520WebServerIsReturningAnUnknownError).data).toBeNull();
     }
   });
 
@@ -741,6 +776,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error500InternalServerError);
       expect((error as Error500InternalServerError).status).toBe(500);
       expect((error as Error500InternalServerError).errorCount).toBe(0);
+      expect((error as Error500InternalServerError).data).toBeNull();
     }
   });
 
@@ -757,6 +793,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error501NotImplemented);
       expect((error as Error501NotImplemented).status).toBe(501);
       expect((error as Error501NotImplemented).errorCount).toBe(0);
+      expect((error as Error501NotImplemented).data).toBeNull();
     }
   });
 
@@ -773,6 +810,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error502BadGateway);
       expect((error as Error502BadGateway).status).toBe(502);
       expect((error as Error502BadGateway).errorCount).toBe(0);
+      expect((error as Error502BadGateway).data).toBeNull();
     }
   });
 
@@ -789,6 +827,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error503ServiceUnavailable);
       expect((error as Error503ServiceUnavailable).status).toBe(503);
       expect((error as Error503ServiceUnavailable).errorCount).toBe(0);
+      expect((error as Error503ServiceUnavailable).data).toBeNull();
     }
   });
 
@@ -805,6 +844,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error504GatewayTimeout);
       expect((error as Error504GatewayTimeout).status).toBe(504);
       expect((error as Error504GatewayTimeout).errorCount).toBe(0);
+      expect((error as Error504GatewayTimeout).data).toBeNull();
     }
   });
 
@@ -821,6 +861,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error505HTTPVersionNotSupported);
       expect((error as Error505HTTPVersionNotSupported).status).toBe(505);
       expect((error as Error505HTTPVersionNotSupported).errorCount).toBe(0);
+      expect((error as Error505HTTPVersionNotSupported).data).toBeNull();
     }
   });
 
@@ -837,6 +878,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error511NetworkAuthenticationRequired);
       expect((error as Error511NetworkAuthenticationRequired).status).toBe(511);
       expect((error as Error511NetworkAuthenticationRequired).errorCount).toBe(0);
+      expect((error as Error511NetworkAuthenticationRequired).data).toBeNull();
     }
   });
 
@@ -853,6 +895,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
       expect((error as Error520WebServerIsReturningAnUnknownError).status).toBe(520);
       expect((error as Error520WebServerIsReturningAnUnknownError).errorCount).toBe(0);
+      expect((error as Error520WebServerIsReturningAnUnknownError).data).toBeNull();
     }
   });
 
@@ -869,6 +912,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error522ConnectionTimedOut);
       expect((error as Error522ConnectionTimedOut).status).toBe(522);
       expect((error as Error522ConnectionTimedOut).errorCount).toBe(0);
+      expect((error as Error522ConnectionTimedOut).data).toBeNull();
     }
   });
 
@@ -885,6 +929,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
       expect(error).toBeInstanceOf(Error524ATimeoutOccurred);
       expect((error as Error524ATimeoutOccurred).status).toBe(524);
       expect((error as Error524ATimeoutOccurred).errorCount).toBe(0);
+      expect((error as Error524ATimeoutOccurred).data).toBeNull();
     }
   });
 });
