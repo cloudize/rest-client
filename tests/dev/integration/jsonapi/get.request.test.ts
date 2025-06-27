@@ -68,7 +68,7 @@ function ExpectedPayload(status: number | string): any {
 describe('Request should succeed when performing a GET on an endpoint that returns a', () => {
   it('200 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Get(`${hostName}/200`, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Get(`${hostName}/200`, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -79,7 +79,7 @@ describe('Request should succeed when performing a GET on an endpoint that retur
 
   it('200 status code from a slow endpoint when the timeout option allows', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Get(`${hostName}/slow`, { Accept: 'application/vnd.api+json' }, { timeoutMs: 5000 });
+    const response = await restClient.Get(`${hostName}/slow`, { accept: 'application/vnd.api+json' }, { timeoutMs: 5000 });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -91,7 +91,7 @@ describe('Request should succeed when performing a GET on an endpoint that retur
 
   it('201 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Get(`${hostName}/201`, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Get(`${hostName}/201`, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(201);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -102,7 +102,7 @@ describe('Request should succeed when performing a GET on an endpoint that retur
 
   it('202 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Get(`${hostName}/202`, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Get(`${hostName}/202`, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(202);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -113,7 +113,7 @@ describe('Request should succeed when performing a GET on an endpoint that retur
 
   it('203 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Get(`${hostName}/203`, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Get(`${hostName}/203`, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(203);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -124,7 +124,7 @@ describe('Request should succeed when performing a GET on an endpoint that retur
 
   it('206 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Get(`${hostName}/206`, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Get(`${hostName}/206`, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(206);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -135,7 +135,7 @@ describe('Request should succeed when performing a GET on an endpoint that retur
 
   it('301 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Get(`${hostName}/301`, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Get(`${hostName}/301`, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -146,7 +146,7 @@ describe('Request should succeed when performing a GET on an endpoint that retur
 
   it('302 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Get(`${hostName}/302`, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Get(`${hostName}/302`, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -157,7 +157,7 @@ describe('Request should succeed when performing a GET on an endpoint that retur
 
   it('303 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Get(`${hostName}/303`, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Get(`${hostName}/303`, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -168,7 +168,7 @@ describe('Request should succeed when performing a GET on an endpoint that retur
 
   it('305 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Get(`${hostName}/305`, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Get(`${hostName}/305`, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -179,7 +179,7 @@ describe('Request should succeed when performing a GET on an endpoint that retur
 
   it('307 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Get(`${hostName}/307`, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Get(`${hostName}/307`, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -190,7 +190,7 @@ describe('Request should succeed when performing a GET on an endpoint that retur
 
   it('308 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Get(`${hostName}/308`, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Get(`${hostName}/308`, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -204,7 +204,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('200 status code from a slow endpoint when the timeout is set to a low value', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/slow`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0, timeoutMs: 1000 });
+      await restClient.Get(`${hostName}/slow`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0, timeoutMs: 1000 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(NetworkConnectionException);
@@ -214,7 +214,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('299 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/299`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/299`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
@@ -226,7 +226,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('301 status code with no redirect', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/301`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/301`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error301MovedPermanently);
@@ -247,7 +247,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('302 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/302`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/302`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error302Found);
@@ -268,7 +268,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('303 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/303`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/303`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error303SeeOther);
@@ -289,7 +289,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('304 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/304`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/304`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error304NotModified);
@@ -300,7 +300,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('305 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/305`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/305`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error305UseProxy);
@@ -321,7 +321,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('306 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/306`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/306`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error306Unused);
@@ -342,7 +342,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('307 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/307`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/307`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error307TemporaryRedirect);
@@ -363,7 +363,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('308 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/308`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/308`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error308PermanentRedirect);
@@ -384,7 +384,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('399 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/399`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/399`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
@@ -396,7 +396,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('400 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/400`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/400`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error400BadRequest);
@@ -417,7 +417,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('401 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/401`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/401`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error401Unauthorized);
@@ -438,7 +438,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('402 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/402`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/402`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error402PaymentRequired);
@@ -459,7 +459,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('403 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/403`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/403`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error403Forbidden);
@@ -480,7 +480,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('404 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/404`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/404`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error404NotFound);
@@ -501,7 +501,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('405 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/405`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/405`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error405MethodNotAllowed);
@@ -522,7 +522,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('406 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/406`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/406`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error406NotAcceptable);
@@ -543,7 +543,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('407 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/407`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/407`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error407ProxyAuthenticationRequired);
@@ -564,7 +564,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('408 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/408`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/408`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error408RequestTimeout);
@@ -585,7 +585,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('409 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/409`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/409`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error409Conflict);
@@ -606,7 +606,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('410 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/410`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/410`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error410Gone);
@@ -627,7 +627,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('411 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/411`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/411`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error411LengthRequired);
@@ -648,7 +648,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('412 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/412`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/412`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error412PreconditionFailed);
@@ -669,7 +669,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('413 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/413`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/413`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error413RequestEntityTooLarge);
@@ -690,7 +690,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('414 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/414`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/414`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error414RequestURITooLong);
@@ -711,7 +711,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('415 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/415`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/415`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error415UnsupportedMediaType);
@@ -732,7 +732,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('416 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/416`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/416`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error416RequestedRangeNotSatisfiable);
@@ -753,7 +753,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('417 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/417`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/417`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error417ExpectationFailed);
@@ -774,7 +774,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('418 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/418`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/418`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error418ImaTeapot);
@@ -795,7 +795,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('421 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/421`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/421`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error421MisdirectedRequest);
@@ -816,7 +816,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('422 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/422`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/422`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error422UnprocessableEntity);
@@ -837,7 +837,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('428 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/428`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/428`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error428PreconditionRequired);
@@ -858,7 +858,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('429 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/429`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/429`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error429TooManyRequests);
@@ -879,7 +879,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('431 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/431`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/431`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error431RequestHeaderFieldsTooLarge);
@@ -900,7 +900,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('451 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/451`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/451`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error451UnavailableForLegalReasons);
@@ -921,7 +921,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('499 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/499`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/499`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
@@ -933,7 +933,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('500 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/500`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/500`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error500InternalServerError);
@@ -954,7 +954,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('501 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/501`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/501`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error501NotImplemented);
@@ -975,7 +975,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('502 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/502`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/502`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error502BadGateway);
@@ -996,7 +996,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('503 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/503`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/503`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error503ServiceUnavailable);
@@ -1017,7 +1017,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('504 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/504`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/504`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error504GatewayTimeout);
@@ -1038,7 +1038,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('505 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/505`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/505`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error505HTTPVersionNotSupported);
@@ -1059,7 +1059,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('511 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/511`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/511`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error511NetworkAuthenticationRequired);
@@ -1080,7 +1080,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('520 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/520`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/520`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
@@ -1102,7 +1102,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('522 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/522`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/522`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error522ConnectionTimedOut);
@@ -1123,7 +1123,7 @@ describe('Request should fail and throw when performing a GET on an endpoint tha
   it('524 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Get(`${hostName}/524`, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Get(`${hostName}/524`, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error524ATimeoutOccurred);
