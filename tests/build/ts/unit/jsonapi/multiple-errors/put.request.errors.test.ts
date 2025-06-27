@@ -53,7 +53,7 @@ describe('Request should succeed when performing a PUT on an endpoint that retur
   it('200 status code', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 200, data: '200 OK' });
-    const response = await restClient.Put('https://httpstat.us/200', payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Put('https://httpstat.us/200', payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.data).toBe('200 OK');
   });
@@ -61,7 +61,7 @@ describe('Request should succeed when performing a PUT on an endpoint that retur
   it('201 status code', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 201, data: '201 Created' });
-    const response = await restClient.Put('https://httpstat.us/201', payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Put('https://httpstat.us/201', payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(201);
     expect(response.data).toBe('201 Created');
   });
@@ -69,7 +69,7 @@ describe('Request should succeed when performing a PUT on an endpoint that retur
   it('202 status code', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 202, data: '202 Accepted' });
-    const response = await restClient.Put('https://httpstat.us/202', payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Put('https://httpstat.us/202', payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(202);
     expect(response.data).toBe('202 Accepted');
   });
@@ -77,7 +77,7 @@ describe('Request should succeed when performing a PUT on an endpoint that retur
   it('203 status code', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 203, data: '203 Non-Authoritative Information' });
-    const response = await restClient.Put('https://httpstat.us/203', payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Put('https://httpstat.us/203', payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(203);
     expect(response.data).toBe('203 Non-Authoritative Information');
   });
@@ -85,7 +85,7 @@ describe('Request should succeed when performing a PUT on an endpoint that retur
   it('206 status code', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 206, data: '206 Partial Content' });
-    const response = await restClient.Put('https://httpstat.us/206', payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Put('https://httpstat.us/206', payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(206);
     expect(response.data).toBe('206 Partial Content');
   });
@@ -93,7 +93,7 @@ describe('Request should succeed when performing a PUT on an endpoint that retur
   it('299 status code', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 299, data: '299 299 Unknown Code' });
-    const response = await restClient.Put('https://httpstat.us/299', payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Put('https://httpstat.us/299', payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(299);
     expect(response.data).toBe('299 299 Unknown Code');
   });
@@ -101,42 +101,42 @@ describe('Request should succeed when performing a PUT on an endpoint that retur
   it('301 status code supporting redirects', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 200 });
-    const response = await restClient.Put('https://httpstat.us/301', payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Put('https://httpstat.us/301', payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
   });
 
   it('302 status code supporting redirects', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 200 });
-    const response = await restClient.Put('https://httpstat.us/302', payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Put('https://httpstat.us/302', payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
   });
 
   it('303 status code supporting redirects', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 200 });
-    const response = await restClient.Put('https://httpstat.us/303', payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Put('https://httpstat.us/303', payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
   });
 
   it('305 status code supporting redirects', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 200 });
-    const response = await restClient.Put('https://httpstat.us/305', payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Put('https://httpstat.us/305', payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
   });
 
   it('307 status code supporting redirects', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 200 });
-    const response = await restClient.Put('https://httpstat.us/307', payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Put('https://httpstat.us/307', payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
   });
 
   it('308 status code supporting redirects', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 200 });
-    const response = await restClient.Put('https://httpstat.us/308', payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Put('https://httpstat.us/308', payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
   });
 });
@@ -145,7 +145,7 @@ describe('The MockRestClient should throw when a PUT is performed', () => {
   it('without a response being mocked', async () => {
     try {
       const restClient = new MockRestClient();
-      await restClient.Put('https://httpstat.us/301', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/301', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
       expect((error as Error).message).toBe('Please mock the Put() response document using MockResolve() or MockReject().');
@@ -161,7 +161,7 @@ describe('The MockRestClient should throw when a PUT is performed', () => {
         data: GetJsonAPIErrorsPayload(301, [301, 302]),
       }));
       restClient.reset();
-      await restClient.Put('https://httpstat.us/301', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/301', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
       expect((error as Error).message).toBe('Please mock the Put() response document using MockResolve() or MockReject().');
@@ -178,7 +178,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(301, [301, 302]),
       }));
-      await restClient.Put('https://httpstat.us/301', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/301', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error301MovedPermanently);
       const errorCode = 301;
@@ -204,7 +204,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(302, [302, 303]),
       }));
-      await restClient.Put('https://httpstat.us/302', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/302', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error302Found);
       const errorCode = 302;
@@ -230,7 +230,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(303, [303, 304]),
       }));
-      await restClient.Put('https://httpstat.us/303', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/303', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error303SeeOther);
       const errorCode = 303;
@@ -256,7 +256,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(304, [304, 305]),
       }));
-      await restClient.Put('https://httpstat.us/304', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/304', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error304NotModified);
       const errorCode = 304;
@@ -282,7 +282,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(305, [305, 306]),
       }));
-      await restClient.Put('https://httpstat.us/305', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/305', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error305UseProxy);
       const errorCode = 305;
@@ -308,7 +308,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(306, [306, 307]),
       }));
-      await restClient.Put('https://httpstat.us/306', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/306', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error306Unused);
       const errorCode = 306;
@@ -334,7 +334,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(307, [307, 308]),
       }));
-      await restClient.Put('https://httpstat.us/307', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/307', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error307TemporaryRedirect);
       const errorCode = 307;
@@ -360,7 +360,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(308, [308, 309]),
       }));
-      await restClient.Put('https://httpstat.us/308', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/308', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error308PermanentRedirect);
       const errorCode = 308;
@@ -386,7 +386,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(399, [398, 399]),
       }));
-      await restClient.Put('https://httpstat.us/399', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/399', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
       const errorCode = 398;
@@ -413,7 +413,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(400, [400, 401]),
       }));
-      await restClient.Put('https://httpstat.us/400', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/400', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error400BadRequest);
       const errorCode = 400;
@@ -439,7 +439,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(401, [401, 402]),
       }));
-      await restClient.Put('https://httpstat.us/401', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/401', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error401Unauthorized);
       const errorCode = 401;
@@ -465,7 +465,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(402, [402, 403]),
       }));
-      await restClient.Put('https://httpstat.us/402', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/402', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error402PaymentRequired);
       const errorCode = 402;
@@ -491,7 +491,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(403, [403, 404]),
       }));
-      await restClient.Put('https://httpstat.us/403', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/403', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error403Forbidden);
       const errorCode = 403;
@@ -517,7 +517,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(404, [404, 405]),
       }));
-      await restClient.Put('https://httpstat.us/404', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/404', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error404NotFound);
       const errorCode = 404;
@@ -543,7 +543,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(405, [405, 406]),
       }));
-      await restClient.Put('https://httpstat.us/405', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/405', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error405MethodNotAllowed);
       const errorCode = 405;
@@ -569,7 +569,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(406, [406, 407]),
       }));
-      await restClient.Put('https://httpstat.us/406', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/406', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error406NotAcceptable);
       const errorCode = 406;
@@ -595,7 +595,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(407, [407, 408]),
       }));
-      await restClient.Put('https://httpstat.us/407', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/407', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error407ProxyAuthenticationRequired);
       const errorCode = 407;
@@ -621,7 +621,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(408, [408, 409]),
       }));
-      await restClient.Put('https://httpstat.us/408', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/408', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error408RequestTimeout);
       const errorCode = 408;
@@ -647,7 +647,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(409, [409, 410]),
       }));
-      await restClient.Put('https://httpstat.us/409', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/409', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error409Conflict);
       const errorCode = 409;
@@ -673,7 +673,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(410, [410, 411]),
       }));
-      await restClient.Put('https://httpstat.us/410', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/410', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error410Gone);
       const errorCode = 410;
@@ -699,7 +699,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(411, [411, 412]),
       }));
-      await restClient.Put('https://httpstat.us/411', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/411', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error411LengthRequired);
       const errorCode = 411;
@@ -725,7 +725,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(412, [412, 413]),
       }));
-      await restClient.Put('https://httpstat.us/412', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/412', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error412PreconditionFailed);
       const errorCode = 412;
@@ -751,7 +751,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(413, [413, 414]),
       }));
-      await restClient.Put('https://httpstat.us/413', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/413', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error413RequestEntityTooLarge);
       const errorCode = 413;
@@ -777,7 +777,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(414, [414, 415]),
       }));
-      await restClient.Put('https://httpstat.us/414', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/414', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error414RequestURITooLong);
       const errorCode = 414;
@@ -803,7 +803,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(415, [415, 416]),
       }));
-      await restClient.Put('https://httpstat.us/415', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/415', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error415UnsupportedMediaType);
       const errorCode = 415;
@@ -829,7 +829,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(416, [416, 417]),
       }));
-      await restClient.Put('https://httpstat.us/416', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/416', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error416RequestedRangeNotSatisfiable);
       const errorCode = 416;
@@ -855,7 +855,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(417, [417, 418]),
       }));
-      await restClient.Put('https://httpstat.us/417', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/417', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error417ExpectationFailed);
       const errorCode = 417;
@@ -881,7 +881,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(418, [418, 419]),
       }));
-      await restClient.Put('https://httpstat.us/418', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/418', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error418ImaTeapot);
       const errorCode = 418;
@@ -907,7 +907,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(421, [421, 422]),
       }));
-      await restClient.Put('https://httpstat.us/421', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/421', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error421MisdirectedRequest);
       const errorCode = 421;
@@ -933,7 +933,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(422, [422, 423]),
       }));
-      await restClient.Put('https://httpstat.us/422', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/422', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error422UnprocessableEntity);
       const errorCode = 422;
@@ -959,7 +959,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(428, [428, 429]),
       }));
-      await restClient.Put('https://httpstat.us/428', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/428', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error428PreconditionRequired);
       const errorCode = 428;
@@ -985,7 +985,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(429, [429, 430]),
       }));
-      await restClient.Put('https://httpstat.us/429', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/429', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error429TooManyRequests);
       const errorCode = 429;
@@ -1011,7 +1011,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(431, [431, 432]),
       }));
-      await restClient.Put('https://httpstat.us/431', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/431', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error431RequestHeaderFieldsTooLarge);
       const errorCode = 431;
@@ -1037,7 +1037,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(451, [451, 452]),
       }));
-      await restClient.Put('https://httpstat.us/451', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/451', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error451UnavailableForLegalReasons);
       const errorCode = 451;
@@ -1063,7 +1063,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(499, [498, 499]),
       }));
-      await restClient.Put('https://httpstat.us/499', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/499', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
       const errorCode = 498;
@@ -1090,7 +1090,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(500, [500, 501]),
       }));
-      await restClient.Put('https://httpstat.us/500', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/500', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error500InternalServerError);
       const errorCode = 500;
@@ -1116,7 +1116,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(501, [501, 502]),
       }));
-      await restClient.Put('https://httpstat.us/501', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/501', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error501NotImplemented);
       const errorCode = 501;
@@ -1142,7 +1142,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(502, [502, 503]),
       }));
-      await restClient.Put('https://httpstat.us/502', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/502', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error502BadGateway);
       const errorCode = 502;
@@ -1168,7 +1168,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(503, [503, 504]),
       }));
-      await restClient.Put('https://httpstat.us/503', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/503', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error503ServiceUnavailable);
       const errorCode = 503;
@@ -1194,7 +1194,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(504, [504, 505]),
       }));
-      await restClient.Put('https://httpstat.us/504', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/504', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error504GatewayTimeout);
       const errorCode = 504;
@@ -1220,7 +1220,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(505, [505, 506]),
       }));
-      await restClient.Put('https://httpstat.us/505', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/505', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error505HTTPVersionNotSupported);
       const errorCode = 505;
@@ -1246,7 +1246,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(511, [511, 512]),
       }));
-      await restClient.Put('https://httpstat.us/511', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/511', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error511NetworkAuthenticationRequired);
       const errorCode = 511;
@@ -1272,7 +1272,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(520, [520, 521]),
       }));
-      await restClient.Put('https://httpstat.us/520', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/520', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
       const errorCode = 520;
@@ -1299,7 +1299,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(522, [522, 523]),
       }));
-      await restClient.Put('https://httpstat.us/522', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/522', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error522ConnectionTimedOut);
       const errorCode = 522;
@@ -1325,7 +1325,7 @@ describe('Request should fail and throw when performing a PUT on an endpoint tha
         headers: GetJsonAPIHeaders(),
         data: GetJsonAPIErrorsPayload(524, [524, 525]),
       }));
-      await restClient.Put('https://httpstat.us/524', payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Put('https://httpstat.us/524', payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error524ATimeoutOccurred);
       const errorCode = 524;

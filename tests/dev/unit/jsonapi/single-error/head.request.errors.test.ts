@@ -51,7 +51,7 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
   it('200 status code', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 200, data: '200 OK' });
-    const response = await restClient.Head('https://httpstat.us/200', { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Head('https://httpstat.us/200', { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.data).toBe('200 OK');
   });
@@ -59,7 +59,7 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
   it('201 status code', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 201, data: '201 Created' });
-    const response = await restClient.Head('https://httpstat.us/201', { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Head('https://httpstat.us/201', { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(201);
     expect(response.data).toBe('201 Created');
   });
@@ -67,7 +67,7 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
   it('202 status code', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 202, data: '202 Accepted' });
-    const response = await restClient.Head('https://httpstat.us/202', { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Head('https://httpstat.us/202', { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(202);
     expect(response.data).toBe('202 Accepted');
   });
@@ -75,7 +75,7 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
   it('203 status code', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 203, data: '203 Non-Authoritative Information' });
-    const response = await restClient.Head('https://httpstat.us/203', { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Head('https://httpstat.us/203', { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(203);
     expect(response.data).toBe('203 Non-Authoritative Information');
   });
@@ -83,7 +83,7 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
   it('206 status code', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 206, data: '206 Partial Content' });
-    const response = await restClient.Head('https://httpstat.us/206', { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Head('https://httpstat.us/206', { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(206);
     expect(response.data).toBe('206 Partial Content');
   });
@@ -91,7 +91,7 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
   it('299 status code', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 299, data: '299 299 Unknown Code' });
-    const response = await restClient.Head('https://httpstat.us/299', { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Head('https://httpstat.us/299', { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(299);
     expect(response.data).toBe('299 299 Unknown Code');
   });
@@ -99,42 +99,42 @@ describe('Request should succeed when performing a HEAD on an endpoint that retu
   it('301 status code supporting redirects', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 200 });
-    const response = await restClient.Head('https://httpstat.us/301', { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Head('https://httpstat.us/301', { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
   });
 
   it('302 status code supporting redirects', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 200 });
-    const response = await restClient.Head('https://httpstat.us/302', { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Head('https://httpstat.us/302', { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
   });
 
   it('303 status code supporting redirects', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 200 });
-    const response = await restClient.Head('https://httpstat.us/303', { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Head('https://httpstat.us/303', { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
   });
 
   it('305 status code supporting redirects', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 200 });
-    const response = await restClient.Head('https://httpstat.us/305', { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Head('https://httpstat.us/305', { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
   });
 
   it('307 status code supporting redirects', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 200 });
-    const response = await restClient.Head('https://httpstat.us/307', { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Head('https://httpstat.us/307', { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
   });
 
   it('308 status code supporting redirects', async () => {
     const restClient = new MockRestClient();
     restClient.MockResolve({ statusCode: 200 });
-    const response = await restClient.Head('https://httpstat.us/308', { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Head('https://httpstat.us/308', { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
   });
 });
@@ -143,7 +143,7 @@ describe('The MockRestClient should throw when a HEAD is performed', () => {
   it('without a response being mocked', async () => {
     try {
       const restClient = new MockRestClient();
-      await restClient.Head('https://httpstat.us/301', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/301', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
       expect((error as Error).message).toBe('Please mock the Head() response document using MockResolve() or MockReject().');
@@ -159,7 +159,7 @@ describe('The MockRestClient should throw when a HEAD is performed', () => {
         data: null,
       }));
       restClient.reset();
-      await restClient.Head('https://httpstat.us/301', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/301', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
       expect((error as Error).message).toBe('Please mock the Head() response document using MockResolve() or MockReject().');
@@ -176,7 +176,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/301', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/301', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error301MovedPermanently);
       expect((error as Error301MovedPermanently).status).toBe(301);
@@ -193,7 +193,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/302', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/302', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error302Found);
       expect((error as Error302Found).status).toBe(302);
@@ -210,7 +210,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/303', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/303', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error303SeeOther);
       expect((error as Error303SeeOther).status).toBe(303);
@@ -227,7 +227,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/304', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/304', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error304NotModified);
       expect((error as Error304NotModified).status).toBe(304);
@@ -244,7 +244,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/305', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/305', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error305UseProxy);
       expect((error as Error305UseProxy).status).toBe(305);
@@ -261,7 +261,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/306', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/306', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error306Unused);
       expect((error as Error306Unused).status).toBe(306);
@@ -278,7 +278,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/307', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/307', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error307TemporaryRedirect);
       expect((error as Error307TemporaryRedirect).status).toBe(307);
@@ -295,7 +295,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/308', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/308', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error308PermanentRedirect);
       expect((error as Error308PermanentRedirect).status).toBe(308);
@@ -312,7 +312,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/399', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/399', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
       expect((error as Error520WebServerIsReturningAnUnknownError).status).toBe(399);
@@ -329,7 +329,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/400', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/400', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error400BadRequest);
       expect((error as Error400BadRequest).status).toBe(400);
@@ -346,7 +346,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/401', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/401', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error401Unauthorized);
       expect((error as Error401Unauthorized).status).toBe(401);
@@ -363,7 +363,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/402', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/402', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error402PaymentRequired);
       expect((error as Error402PaymentRequired).status).toBe(402);
@@ -380,7 +380,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/403', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/403', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error403Forbidden);
       expect((error as Error403Forbidden).status).toBe(403);
@@ -397,7 +397,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/404', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/404', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error404NotFound);
       expect((error as Error404NotFound).status).toBe(404);
@@ -414,7 +414,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/405', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/405', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error405MethodNotAllowed);
       expect((error as Error405MethodNotAllowed).status).toBe(405);
@@ -431,7 +431,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/406', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/406', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error406NotAcceptable);
       expect((error as Error406NotAcceptable).status).toBe(406);
@@ -448,7 +448,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/407', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/407', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error407ProxyAuthenticationRequired);
       expect((error as Error407ProxyAuthenticationRequired).status).toBe(407);
@@ -465,7 +465,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/408', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/408', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error408RequestTimeout);
       expect((error as Error408RequestTimeout).status).toBe(408);
@@ -482,7 +482,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/409', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/409', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error409Conflict);
       expect((error as Error409Conflict).status).toBe(409);
@@ -499,7 +499,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/410', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/410', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error410Gone);
       expect((error as Error410Gone).status).toBe(410);
@@ -516,7 +516,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/411', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/411', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error411LengthRequired);
       expect((error as Error411LengthRequired).status).toBe(411);
@@ -533,7 +533,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/412', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/412', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error412PreconditionFailed);
       expect((error as Error412PreconditionFailed).status).toBe(412);
@@ -550,7 +550,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/413', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/413', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error413RequestEntityTooLarge);
       expect((error as Error413RequestEntityTooLarge).status).toBe(413);
@@ -567,7 +567,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/414', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/414', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error414RequestURITooLong);
       expect((error as Error414RequestURITooLong).status).toBe(414);
@@ -584,7 +584,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/415', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/415', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error415UnsupportedMediaType);
       expect((error as Error415UnsupportedMediaType).status).toBe(415);
@@ -601,7 +601,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/416', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/416', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error416RequestedRangeNotSatisfiable);
       expect((error as Error416RequestedRangeNotSatisfiable).status).toBe(416);
@@ -618,7 +618,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/417', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/417', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error417ExpectationFailed);
       expect((error as Error417ExpectationFailed).status).toBe(417);
@@ -635,7 +635,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/418', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/418', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error418ImaTeapot);
       expect((error as Error418ImaTeapot).status).toBe(418);
@@ -652,7 +652,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/421', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/421', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error421MisdirectedRequest);
       expect((error as Error421MisdirectedRequest).status).toBe(421);
@@ -669,7 +669,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/422', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/422', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error422UnprocessableEntity);
       expect((error as Error422UnprocessableEntity).status).toBe(422);
@@ -686,7 +686,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/428', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/428', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error428PreconditionRequired);
       expect((error as Error428PreconditionRequired).status).toBe(428);
@@ -703,7 +703,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/429', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/429', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error429TooManyRequests);
       expect((error as Error429TooManyRequests).status).toBe(429);
@@ -720,7 +720,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/431', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/431', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error431RequestHeaderFieldsTooLarge);
       expect((error as Error431RequestHeaderFieldsTooLarge).status).toBe(431);
@@ -737,7 +737,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/451', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/451', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error451UnavailableForLegalReasons);
       expect((error as Error451UnavailableForLegalReasons).status).toBe(451);
@@ -754,7 +754,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/499', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/499', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
       expect((error as Error520WebServerIsReturningAnUnknownError).status).toBe(499);
@@ -771,7 +771,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/500', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/500', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error500InternalServerError);
       expect((error as Error500InternalServerError).status).toBe(500);
@@ -788,7 +788,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/501', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/501', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error501NotImplemented);
       expect((error as Error501NotImplemented).status).toBe(501);
@@ -805,7 +805,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/502', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/502', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error502BadGateway);
       expect((error as Error502BadGateway).status).toBe(502);
@@ -822,7 +822,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/503', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/503', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error503ServiceUnavailable);
       expect((error as Error503ServiceUnavailable).status).toBe(503);
@@ -839,7 +839,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/504', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/504', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error504GatewayTimeout);
       expect((error as Error504GatewayTimeout).status).toBe(504);
@@ -856,7 +856,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/505', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/505', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error505HTTPVersionNotSupported);
       expect((error as Error505HTTPVersionNotSupported).status).toBe(505);
@@ -873,7 +873,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/511', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/511', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error511NetworkAuthenticationRequired);
       expect((error as Error511NetworkAuthenticationRequired).status).toBe(511);
@@ -890,7 +890,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/520', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/520', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
       expect((error as Error520WebServerIsReturningAnUnknownError).status).toBe(520);
@@ -907,7 +907,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/522', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/522', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error522ConnectionTimedOut);
       expect((error as Error522ConnectionTimedOut).status).toBe(522);
@@ -924,7 +924,7 @@ describe('Request should fail and throw when performing a HEAD on an endpoint th
         headers: GetJsonAPIHeaders(),
         data: null,
       }));
-      await restClient.Head('https://httpstat.us/524', { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Head('https://httpstat.us/524', { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
     } catch (error) {
       expect(error).toBeInstanceOf(Error524ATimeoutOccurred);
       expect((error as Error524ATimeoutOccurred).status).toBe(524);

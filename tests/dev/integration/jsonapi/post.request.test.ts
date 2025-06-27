@@ -70,7 +70,7 @@ function ExpectedPayload(status: number | string): any {
 describe('Request should succeed when performing a POST on an endpoint that returns a', () => {
   it('200 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Post(`${hostName}/200`, payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Post(`${hostName}/200`, payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -84,7 +84,7 @@ describe('Request should succeed when performing a POST on an endpoint that retu
     const response = await restClient.Post(
       `${hostName}/slow`,
       payload,
-      { Accept: 'application/vnd.api+json' },
+      { accept: 'application/vnd.api+json' },
       { timeoutMs: 5000 },
     );
     expect(response.statusCode).toBe(200);
@@ -98,7 +98,7 @@ describe('Request should succeed when performing a POST on an endpoint that retu
 
   it('201 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Post(`${hostName}/201`, payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Post(`${hostName}/201`, payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(201);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -109,7 +109,7 @@ describe('Request should succeed when performing a POST on an endpoint that retu
 
   it('202 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Post(`${hostName}/202`, payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Post(`${hostName}/202`, payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(202);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -120,7 +120,7 @@ describe('Request should succeed when performing a POST on an endpoint that retu
 
   it('203 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Post(`${hostName}/203`, payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Post(`${hostName}/203`, payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(203);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -131,7 +131,7 @@ describe('Request should succeed when performing a POST on an endpoint that retu
 
   it('206 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Post(`${hostName}/206`, payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Post(`${hostName}/206`, payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(206);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -142,7 +142,7 @@ describe('Request should succeed when performing a POST on an endpoint that retu
 
   it('301 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Post(`${hostName}/301`, payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Post(`${hostName}/301`, payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -153,7 +153,7 @@ describe('Request should succeed when performing a POST on an endpoint that retu
 
   it('302 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Post(`${hostName}/302`, payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Post(`${hostName}/302`, payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -164,7 +164,7 @@ describe('Request should succeed when performing a POST on an endpoint that retu
 
   it('303 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Post(`${hostName}/303`, payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Post(`${hostName}/303`, payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -175,7 +175,7 @@ describe('Request should succeed when performing a POST on an endpoint that retu
 
   it('305 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Post(`${hostName}/305`, payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Post(`${hostName}/305`, payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -186,7 +186,7 @@ describe('Request should succeed when performing a POST on an endpoint that retu
 
   it('307 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Post(`${hostName}/307`, payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Post(`${hostName}/307`, payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -197,7 +197,7 @@ describe('Request should succeed when performing a POST on an endpoint that retu
 
   it('308 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Post(`${hostName}/308`, payload, { Accept: 'application/vnd.api+json' });
+    const response = await restClient.Post(`${hostName}/308`, payload, { accept: 'application/vnd.api+json' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -214,7 +214,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
       await restClient.Post(
         `${hostName}/slow`,
         payload,
-        { Accept: 'application/vnd.api+json' },
+        { accept: 'application/vnd.api+json' },
         { maxRedirects: 0, timeoutMs: 1000 },
       );
       throw new Error('The method did not throw as expected');
@@ -226,7 +226,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('299 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/299`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/299`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
@@ -238,7 +238,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('301 status code with no redirect', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/301`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/301`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error301MovedPermanently);
@@ -259,7 +259,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('302 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/302`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/302`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error302Found);
@@ -280,7 +280,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('303 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/303`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/303`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error303SeeOther);
@@ -301,7 +301,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('304 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/304`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/304`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error304NotModified);
@@ -312,7 +312,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('305 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/305`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/305`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error305UseProxy);
@@ -333,7 +333,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('306 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/306`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/306`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error306Unused);
@@ -354,7 +354,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('307 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/307`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/307`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error307TemporaryRedirect);
@@ -375,7 +375,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('308 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/308`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/308`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error308PermanentRedirect);
@@ -396,7 +396,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('399 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/399`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/399`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
@@ -408,7 +408,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('400 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/400`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/400`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error400BadRequest);
@@ -429,7 +429,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('401 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/401`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/401`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error401Unauthorized);
@@ -450,7 +450,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('402 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/402`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/402`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error402PaymentRequired);
@@ -471,7 +471,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('403 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/403`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/403`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error403Forbidden);
@@ -492,7 +492,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('404 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/404`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/404`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error404NotFound);
@@ -513,7 +513,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('405 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/405`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/405`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error405MethodNotAllowed);
@@ -534,7 +534,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('406 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/406`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/406`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error406NotAcceptable);
@@ -555,7 +555,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('407 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/407`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/407`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error407ProxyAuthenticationRequired);
@@ -576,7 +576,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('408 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/408`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/408`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error408RequestTimeout);
@@ -597,7 +597,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('409 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/409`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/409`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error409Conflict);
@@ -618,7 +618,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('410 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/410`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/410`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error410Gone);
@@ -639,7 +639,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('411 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/411`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/411`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error411LengthRequired);
@@ -660,7 +660,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('412 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/412`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/412`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error412PreconditionFailed);
@@ -681,7 +681,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('413 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/413`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/413`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error413RequestEntityTooLarge);
@@ -702,7 +702,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('414 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/414`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/414`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error414RequestURITooLong);
@@ -723,7 +723,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('415 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/415`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/415`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error415UnsupportedMediaType);
@@ -744,7 +744,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('416 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/416`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/416`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error416RequestedRangeNotSatisfiable);
@@ -765,7 +765,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('417 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/417`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/417`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error417ExpectationFailed);
@@ -786,7 +786,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('418 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/418`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/418`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error418ImaTeapot);
@@ -807,7 +807,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('421 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/421`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/421`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error421MisdirectedRequest);
@@ -828,7 +828,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('422 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/422`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/422`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error422UnprocessableEntity);
@@ -849,7 +849,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('428 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/428`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/428`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error428PreconditionRequired);
@@ -870,7 +870,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('429 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/429`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/429`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error429TooManyRequests);
@@ -891,7 +891,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('431 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/431`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/431`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error431RequestHeaderFieldsTooLarge);
@@ -912,7 +912,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('451 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/451`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/451`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error451UnavailableForLegalReasons);
@@ -933,7 +933,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('499 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/499`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/499`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
@@ -945,7 +945,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('500 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/500`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/500`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error500InternalServerError);
@@ -966,7 +966,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('501 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/501`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/501`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error501NotImplemented);
@@ -987,7 +987,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('502 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/502`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/502`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error502BadGateway);
@@ -1008,7 +1008,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('503 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/503`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/503`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error503ServiceUnavailable);
@@ -1029,7 +1029,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('504 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/504`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/504`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error504GatewayTimeout);
@@ -1050,7 +1050,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('505 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/505`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/505`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error505HTTPVersionNotSupported);
@@ -1071,7 +1071,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('511 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/511`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/511`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error511NetworkAuthenticationRequired);
@@ -1092,7 +1092,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('520 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/520`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/520`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
@@ -1114,7 +1114,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('522 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/522`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/522`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error522ConnectionTimedOut);
@@ -1135,7 +1135,7 @@ describe('Request should fail and throw when performing a POST on an endpoint th
   it('524 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Post(`${hostName}/524`, payload, { Accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
+      await restClient.Post(`${hostName}/524`, payload, { accept: 'application/vnd.api+json' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error524ATimeoutOccurred);

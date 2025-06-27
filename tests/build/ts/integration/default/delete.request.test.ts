@@ -52,7 +52,7 @@ const hostName = 'http://127.0.0.1:3000';
 describe('Request should succeed when performing a DELETE on an endpoint that returns a', () => {
   it('200 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Delete(`${hostName}/200`, { Accept: '*/*' });
+    const response = await restClient.Delete(`${hostName}/200`, { accept: '*/*' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -64,7 +64,7 @@ describe('Request should succeed when performing a DELETE on an endpoint that re
 
   it('200 status code from a slow endpoint when the timeout option allows', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Delete(`${hostName}/slow`, { Accept: '*/*' }, { timeoutMs: 5000 });
+    const response = await restClient.Delete(`${hostName}/slow`, { accept: '*/*' }, { timeoutMs: 5000 });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -76,7 +76,7 @@ describe('Request should succeed when performing a DELETE on an endpoint that re
 
   it('201 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Delete(`${hostName}/201`, { Accept: '*/*' });
+    const response = await restClient.Delete(`${hostName}/201`, { accept: '*/*' });
     expect(response.statusCode).toBe(201);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -88,7 +88,7 @@ describe('Request should succeed when performing a DELETE on an endpoint that re
 
   it('202 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Delete(`${hostName}/202`, { Accept: '*/*' });
+    const response = await restClient.Delete(`${hostName}/202`, { accept: '*/*' });
     expect(response.statusCode).toBe(202);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -100,7 +100,7 @@ describe('Request should succeed when performing a DELETE on an endpoint that re
 
   it('203 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Delete(`${hostName}/203`, { Accept: '*/*' });
+    const response = await restClient.Delete(`${hostName}/203`, { accept: '*/*' });
     expect(response.statusCode).toBe(203);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -112,7 +112,7 @@ describe('Request should succeed when performing a DELETE on an endpoint that re
 
   it('206 status code', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Delete(`${hostName}/206`, { Accept: '*/*' });
+    const response = await restClient.Delete(`${hostName}/206`, { accept: '*/*' });
     expect(response.statusCode).toBe(206);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -124,7 +124,7 @@ describe('Request should succeed when performing a DELETE on an endpoint that re
 
   it('301 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Delete(`${hostName}/301`, { Accept: '*/*' });
+    const response = await restClient.Delete(`${hostName}/301`, { accept: '*/*' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -135,7 +135,7 @@ describe('Request should succeed when performing a DELETE on an endpoint that re
 
   it('302 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Delete(`${hostName}/302`, { Accept: '*/*' });
+    const response = await restClient.Delete(`${hostName}/302`, { accept: '*/*' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -146,7 +146,7 @@ describe('Request should succeed when performing a DELETE on an endpoint that re
 
   it('303 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Delete(`${hostName}/303`, { Accept: '*/*' });
+    const response = await restClient.Delete(`${hostName}/303`, { accept: '*/*' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -157,7 +157,7 @@ describe('Request should succeed when performing a DELETE on an endpoint that re
 
   it('305 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Delete(`${hostName}/305`, { Accept: '*/*' });
+    const response = await restClient.Delete(`${hostName}/305`, { accept: '*/*' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -168,7 +168,7 @@ describe('Request should succeed when performing a DELETE on an endpoint that re
 
   it('307 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Delete(`${hostName}/307`, { Accept: '*/*' });
+    const response = await restClient.Delete(`${hostName}/307`, { accept: '*/*' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -179,7 +179,7 @@ describe('Request should succeed when performing a DELETE on an endpoint that re
 
   it('308 status code supporting redirects', async () => {
     const restClient = new RestClient();
-    const response = await restClient.Delete(`${hostName}/308`, { Accept: '*/*' });
+    const response = await restClient.Delete(`${hostName}/308`, { accept: '*/*' });
     expect(response.statusCode).toBe(200);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -190,7 +190,7 @@ describe('Request should succeed when performing a DELETE on an endpoint that re
 
   it('400 status code (when the error mode is set to response)', async () => {
     const restClient = new RestClient(false);
-    const response = await restClient.Delete(`${hostName}/400`, { Accept: '*/*' });
+    const response = await restClient.Delete(`${hostName}/400`, { accept: '*/*' });
     expect(response.statusCode).toBe(400);
     expect(response.headers).toBeDefined();
     expect(isEmpty(response.headers)).toBe(false);
@@ -204,7 +204,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('200 status code from a slow endpoint when the timeout is set to a low value', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/slow`, { Accept: '*/*' }, { maxRedirects: 0, timeoutMs: 1000 });
+      await restClient.Delete(`${hostName}/slow`, { accept: '*/*' }, { maxRedirects: 0, timeoutMs: 1000 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(NetworkConnectionException);
@@ -214,7 +214,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('299 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/299`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/299`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
@@ -224,7 +224,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('301 status code with no redirect', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/301`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/301`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error301MovedPermanently);
@@ -235,7 +235,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('302 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/302`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/302`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error302Found);
@@ -246,7 +246,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('303 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/303`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/303`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error303SeeOther);
@@ -257,7 +257,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('304 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/304`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/304`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error304NotModified);
@@ -268,7 +268,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('305 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/305`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/305`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error305UseProxy);
@@ -279,7 +279,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('306 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/306`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/306`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error306Unused);
@@ -290,7 +290,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('307 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/307`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/307`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error307TemporaryRedirect);
@@ -301,7 +301,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('308 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/308`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/308`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error308PermanentRedirect);
@@ -312,7 +312,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('399 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/399`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/399`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
@@ -322,7 +322,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('400 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/400`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/400`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error400BadRequest);
@@ -333,7 +333,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('401 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/401`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/401`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error401Unauthorized);
@@ -344,7 +344,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('402 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/402`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/402`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error402PaymentRequired);
@@ -355,7 +355,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('403 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/403`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/403`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error403Forbidden);
@@ -366,7 +366,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('404 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/404`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/404`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error404NotFound);
@@ -377,7 +377,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('405 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/405`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/405`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error405MethodNotAllowed);
@@ -388,7 +388,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('406 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/406`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/406`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error406NotAcceptable);
@@ -399,7 +399,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('407 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/407`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/407`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error407ProxyAuthenticationRequired);
@@ -410,7 +410,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('408 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/408`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/408`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error408RequestTimeout);
@@ -421,7 +421,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('409 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/409`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/409`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error409Conflict);
@@ -432,7 +432,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('410 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/410`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/410`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error410Gone);
@@ -443,7 +443,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('411 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/411`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/411`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error411LengthRequired);
@@ -454,7 +454,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('412 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/412`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/412`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error412PreconditionFailed);
@@ -465,7 +465,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('413 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/413`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/413`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error413RequestEntityTooLarge);
@@ -476,7 +476,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('414 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/414`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/414`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error414RequestURITooLong);
@@ -487,7 +487,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('415 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/415`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/415`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error415UnsupportedMediaType);
@@ -498,7 +498,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('416 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/416`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/416`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error416RequestedRangeNotSatisfiable);
@@ -509,7 +509,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('417 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/417`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/417`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error417ExpectationFailed);
@@ -520,7 +520,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('418 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/418`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/418`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error418ImaTeapot);
@@ -531,7 +531,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('421 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/421`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/421`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error421MisdirectedRequest);
@@ -542,7 +542,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('422 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/422`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/422`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error422UnprocessableEntity);
@@ -553,7 +553,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('428 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/428`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/428`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error428PreconditionRequired);
@@ -564,7 +564,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('429 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/429`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/429`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error429TooManyRequests);
@@ -575,7 +575,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('431 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/431`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/431`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error431RequestHeaderFieldsTooLarge);
@@ -586,7 +586,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('451 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/451`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/451`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error451UnavailableForLegalReasons);
@@ -597,7 +597,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('499 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/499`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/499`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
@@ -607,7 +607,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('500 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/500`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/500`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error500InternalServerError);
@@ -618,7 +618,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('501 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/501`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/501`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error501NotImplemented);
@@ -629,7 +629,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('502 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/502`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/502`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error502BadGateway);
@@ -640,7 +640,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('503 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/503`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/503`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error503ServiceUnavailable);
@@ -651,7 +651,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('504 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/504`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/504`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error504GatewayTimeout);
@@ -662,7 +662,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('505 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/505`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/505`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error505HTTPVersionNotSupported);
@@ -673,7 +673,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('511 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/511`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/511`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error511NetworkAuthenticationRequired);
@@ -684,7 +684,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('520 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/520`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/520`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error520WebServerIsReturningAnUnknownError);
@@ -695,7 +695,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('522 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/522`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/522`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error522ConnectionTimedOut);
@@ -706,7 +706,7 @@ describe('Request should fail and throw when performing a DELETE on an endpoint 
   it('524 status code', async () => {
     try {
       const restClient = new RestClient();
-      await restClient.Delete(`${hostName}/524`, { Accept: '*/*' }, { maxRedirects: 0 });
+      await restClient.Delete(`${hostName}/524`, { accept: '*/*' }, { maxRedirects: 0 });
       throw new Error('The method did not throw as expected');
     } catch (error) {
       expect(error).toBeInstanceOf(Error524ATimeoutOccurred);
