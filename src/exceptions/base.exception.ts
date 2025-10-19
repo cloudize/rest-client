@@ -1,6 +1,7 @@
-import {
-  hasProperty, isArrayOfObjects, isDefined, isDefinedAndNotNull, isObject, isString, isTrue,
-} from '@cloudize/json';
+import { isTrue } from '@cloudize/json/lib/boolean';
+import { isDefined, isDefinedAndNotNull } from '@cloudize/json/lib/common';
+import { hasProperty } from '@cloudize/json/lib/object';
+import { isArrayOfObjects, isObject, isString } from '@cloudize/json/lib/type-guards';
 import JsonAPIError from './jsonapi.error';
 
 export interface RestClientExceptionData {
