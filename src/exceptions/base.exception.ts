@@ -1,6 +1,7 @@
-import {
-  hasProperty, isArrayOfObjects, isDefined, isDefinedAndNotNull, isObject, isString, isTrue,
-} from '@apigames/json';
+import { isTrue } from '@apigames/json/lib/boolean';
+import { isDefined, isDefinedAndNotNull } from '@apigames/json/lib/common';
+import { hasProperty } from '@apigames/json/lib/object';
+import { isArrayOfObjects, isObject, isString } from '@apigames/json/lib/type-guards';
 import JsonAPIError from './jsonapi.error';
 
 export interface RestClientExceptionData {

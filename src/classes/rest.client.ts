@@ -1,14 +1,10 @@
 /* eslint-disable import/no-cycle */
 import axios, {
-  AxiosError,
-  AxiosRequestConfig,
-  AxiosResponse,
-  Method,
-  RawAxiosResponseHeaders,
+  AxiosError, AxiosRequestConfig, AxiosResponse, Method, RawAxiosResponseHeaders,
 } from 'axios';
-import {
-  hasProperty, isDefined, isDefinedAndNotNull, isTrue,
-} from '@apigames/json';
+import { isDefined, isDefinedAndNotNull } from '@apigames/json/lib/common';
+import { hasProperty } from '@apigames/json/lib/object';
+import { isTrue } from '@apigames/json/lib/boolean';
 import {
   IRestClient,
   RestClientOptions,

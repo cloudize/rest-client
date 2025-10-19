@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { hasProperty, isNumber } from '@apigames/json';
+import { hasProperty } from '@apigames/json/lib/object';
+import { isNumber } from '@apigames/json/lib/type-guards';
 import { IMockRestClient, RestClientOptions, RestClientResponse } from '../interfaces';
 import { RestClientBaseException } from '../exceptions';
 
