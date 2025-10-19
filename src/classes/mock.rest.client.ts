@@ -1,11 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { hasProperty, isNumber } from '@apigames/json';
-import {
-  IMockRestClient,
-  RestClientBaseException,
-  RestClientOptions,
-  RestClientResponse,
-} from '..';
+import { IMockRestClient, RestClientOptions, RestClientResponse } from '../interfaces';
+import { RestClientBaseException } from '../exceptions';
 
 // eslint-disable-next-line no-shadow
 enum MockResponseType {
