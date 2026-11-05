@@ -1,4 +1,4 @@
-import {isEmpty, isString} from '@apigames/json';
+import { isEmpty, isString } from '@apigames/json';
 import {
   RestClient,
   Error301MovedPermanently,

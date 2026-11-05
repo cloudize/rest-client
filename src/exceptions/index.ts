@@ -1,4 +1,4 @@
-export { default as RestClientBaseException, RestClientExceptionData } from './base.exception';
+export { default as RestClientBaseException, type RestClientExceptionData } from './base.exception';
 export { default as NetworkConnectionException } from './network.connection.exception';
 export { default as ThrowNetworkConnectionException } from './throw.network.connection.exception';
 export { default as Error301MovedPermanently } from './error.301.moved.permanently';

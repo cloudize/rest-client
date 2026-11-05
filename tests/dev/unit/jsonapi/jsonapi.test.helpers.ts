@@ -1,4 +1,4 @@
-import { RestClientResponseHeaders } from '../../../../src/interfaces/rest.client';
+import { RestClientResponseHeaders } from '../../../../src/interfaces';
 
 export function GetJsonAPIHeaders(): RestClientResponseHeaders {
   return {
