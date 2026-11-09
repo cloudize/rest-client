@@ -1,4 +1,4 @@
-import {isEmpty, isString} from '@cloudize/json';
+import { isEmpty, isString } from '@cloudize/json';
 import {
   RestClient,
   Error301MovedPermanently,

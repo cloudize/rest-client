@@ -45,7 +45,7 @@ import {
   Error522ConnectionTimedOut,
   Error524ATimeoutOccurred,
 } from '../../../../../src';
-import {GetJsonAPIErrorsPayload, GetJsonAPIHeaders} from '../jsonapi.test.helpers';
+import { GetJsonAPIHeaders } from '../jsonapi.test.helpers';
 
 describe('Request should succeed when performing a HEAD on an endpoint that returns a', () => {
   it('200 status code', async () => {
